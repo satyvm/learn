@@ -6,13 +6,14 @@
     <title>My Learning Hub</title>
     <style>
         :root {
-            --bg-color: #f8fafc;
-            --text-color: #1e293b;
-            --card-bg: #ffffff;
-            --primary-color: #3b82f6;
-            --secondary-color: #64748b;
+            --bg-color: #0b0f19;
+            --text-color: #f1f5f9;
+            --card-bg: #151b2c;
+            --primary-color: #06b6d4;
+            --secondary-color: #94a3b8;
+            --border-color: #232d45;
             --border-radius: 12px;
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow: 0 10px 30px -10px rgba(2, 3, 6, 0.7);
         }
 
         body {
@@ -35,13 +36,17 @@
         header {
             text-align: center;
             margin-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
         }
 
         h1 {
             font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
-            color: #0f172a;
+            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         p.subtitle {
@@ -57,15 +62,16 @@
 
         .topic-card {
             background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: var(--border-radius);
             padding: 1.5rem;
             box-shadow: var(--shadow);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
         }
 
         .topic-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            border-color: #313f5e;
         }
 
         .topic-title {
@@ -91,6 +97,7 @@
             color: var(--text-color);
             display: flex;
             align-items: center;
+            transition: color 0.2s ease;
         }
 
         .lesson-list a:hover {
@@ -109,6 +116,7 @@
             text-align: center;
             padding: 3rem;
             background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             color: var(--secondary-color);

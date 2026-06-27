@@ -56,3 +56,5 @@ workspace-root/
 ```
 
 When interacting with the user, always remember that their learning state is distributed across these topic folders, and `home.html` serves as their main entry point.
+
+Always make the learning materials in Dark Mode.

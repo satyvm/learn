@@ -1,61 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  :root { --bg-color: #f8fafc; --text-color: #1e293b; --primary-color: #3b82f6; --card-bg: #ffffff; }
-  body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg-color); color: var(--text-color); }
-  h1, h2, h3 { color: #0f172a; }
-  .box { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border-left: 4px solid var(--primary-color); }
-  a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
-  a:hover { text-decoration: underline; }
-  code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
-  pre { background: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; }
-</style>
-<title>Lesson 6: Add Feature E2E</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 6: Adding Features End-to-End</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #151b2c;
+      --border-color: #232d45;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #4f46e5;
+      --primary-hover: #6366f1;
+      --accent: #06b6d4;
+      --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+      --radius: 12px;
+      --shadow: 0 10px 30px -10px rgba(2, 3, 6, 0.7);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding: 2.5rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    header {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #ffffff;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+    strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #313f5e;
+    }
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      color: var(--text-muted);
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+      background: #1e2538;
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+      color: #e2e8f0;
+      border: 1px solid #2d3750;
+    }
+    pre {
+      font-family: 'JetBrains Mono', monospace;
+      background: #0f1320;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.6);
+    }
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 0.95em;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 50px;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+    .question-box {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      margin-top: 1.5rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 2rem;
+    }
+    .nav-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .nav-btn.primary {
+      background: var(--accent-gradient);
+      color: #ffffff;
+    }
+    .nav-btn.primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .nav-btn.secondary {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+    .nav-btn.secondary:hover {
+      background: #1a2236;
+    }
+  </style>
 </head>
 <body>
-  <h1>Lesson 6: Add Feature E2E</h1>
-  <p>Correct. <code>turbo</code> orchestrates tasks. Fast cache.</p>
-  
-  <h2>Adding "Comments" Feature</h2>
-  <p>To master stack, build feature End-to-End (E2E). Example: "Comments" on a post.</p>
+  <header>
+    <div class="badge">Lesson 6</div>
+    <h1>Feature Development End-to-End</h1>
+    <div class="subtitle">Implement a new feature across the entire monorepo stack step by step.</div>
+  </header>
 
-  <h3>Step 1: DB (<code>packages/db</code>)</h3>
-  <pre><code>// schema.ts
+  <div class="card">
+    <p>Correct! Turborepo (or simply <code>turbo</code>) manages the build pipelines and development scripts, executing them concurrently across your package workspaces.</p>
+  </div>
+
+  <div class="card">
+    <h2>E2E Feature: Adding Post Comments</h2>
+    <p>To master code progression in the monorepo, let's trace how we would build a "Comments" module under a post.</p>
+
+    <h3>Step 1: Write Database Table (<code>packages/db</code>)</h3>
+    <p>Open <code>packages/db/src/schema.ts</code> and define the schema for comments using Drizzle ORM:</p>
+    <pre><code>// schema.ts
 export const comments = pgTable("comment", {
   id: serial("id").primaryKey(),
   postId: integer("post_id").notNull(),
   content: text("content").notNull(),
 });</code></pre>
+    <p>Run Drizzle migrations to sync your schema with your local PostgreSQL instance.</p>
 
-  <h3>Step 2: API (<code>packages/api</code>)</h3>
-  <pre><code>// router/post.ts
+    <h3>Step 2: Define tRPC Procedure (<code>packages/api</code>)</h3>
+    <p>In <code>packages/api/src/router/post.ts</code>, write a new mutation to add comments:</p>
+    <pre><code>// router/post.ts
 addComment: publicProcedure
   .input(z.object({ postId: z.number(), content: z.string() }))
   .mutation(async ({ ctx, input }) => {
     return ctx.db.insert(comments).values(input);
   })</code></pre>
 
-  <h3>Step 3: UI (<code>apps/web</code>)</h3>
-  <pre><code>// PostView.tsx
+    <h3>Step 3: Render in React Web View (<code>apps/web</code>)</h3>
+    <p>In your frontend React component, fetch the mutation helper and wire it to a button:</p>
+    <pre><code>// PostView.tsx
 const mutation = trpc.post.addComment.useMutation();
 
-&lt;Button onClick={() => mutation.mutate({ postId: 1, content: "Nice!" })}&gt;
+&lt;Button onClick={() => mutation.mutate({ postId: 1, content: "Great post!" })}&gt;
   Comment
 &lt;/Button&gt;</code></pre>
+  </div>
 
-  <h2>Your Task</h2>
-  <div class="box">
-    <p>Notice how type flows from DB -> API -> UI. If you change <code>content</code> to <code>text</code> in DB, UI will show type error.</p>
+  <div class="card">
+    <h2>Why this workflow rules</h2>
+    <p>Observe the developer experience: because everything is written in TypeScript, the moment you call <code>mutation.mutate()</code> in <code>apps/web</code>, your IDE will validate the parameters based on the Zod schema you wrote in <code>packages/api</code>. Changing a parameter name in the router will instantly trigger a compilation error in the React file.</p>
   </div>
-  
-  <h2>Question (Reply in Chat)</h2>
-  <div class="box">
-    <p>In step 2, we use <code>z.object(...)</code> to validate input. What library does <code>z</code> come from? (Hint: starts with Z)</p>
+
+  <div class="card question-box">
+    <h2>Review Question</h2>
+    <p>In step 2, we use <code>z.object(...)</code> to validate the request payload schema. What is the name of the validation library that the symbol <code>z</code> is imported from? (Hint: starts with "z")</p>
+    <p>Submit your answer in the chat to proceed to the next lesson.</p>
   </div>
-  
-  <p>Tell agent answer to continue.</p>
+
+  <div class="nav-links">
+    <a href="0005-scaffold-first-run.html" class="nav-btn secondary">← Back</a>
+    <a href="0007-wisdom-and-graduation.html" class="nav-btn primary">Next: Lesson 7 →</a>
+  </div>
 </body>
 </html>

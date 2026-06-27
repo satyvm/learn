@@ -1,48 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  :root { --bg-color: #f8fafc; --text-color: #1e293b; --primary-color: #3b82f6; --card-bg: #ffffff; }
-  body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg-color); color: var(--text-color); }
-  h1, h2, h3 { color: #0f172a; }
-  .box { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border-left: 4px solid var(--primary-color); }
-  a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
-  a:hover { text-decoration: underline; }
-  code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
-  pre { background: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; }
-</style>
-<title>Lesson 2: tRPC & API Layer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 2: tRPC & API Layer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #151b2c;
+      --border-color: #232d45;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #4f46e5;
+      --primary-hover: #6366f1;
+      --accent: #06b6d4;
+      --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+      --radius: 12px;
+      --shadow: 0 10px 30px -10px rgba(2, 3, 6, 0.7);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding: 2.5rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    header {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #ffffff;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+    strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #313f5e;
+    }
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      color: var(--text-muted);
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+      background: #1e2538;
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+      color: #e2e8f0;
+      border: 1px solid #2d3750;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 50px;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+    .question-box {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      margin-top: 1.5rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 2rem;
+    }
+    .nav-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .nav-btn.primary {
+      background: var(--accent-gradient);
+      color: #ffffff;
+    }
+    .nav-btn.primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .nav-btn.secondary {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+    .nav-btn.secondary:hover {
+      background: #1a2236;
+    }
+  </style>
 </head>
 <body>
-  <h1>Lesson 2: tRPC & API Layer</h1>
-  <p>Correct. DB first. Data rules app.</p>
-  
-  <h2>Step 2: API Layer</h2>
-  <p>DB schema done -> need API to fetch/mutate data. Enter <strong>tRPC</strong> in <code>packages/api</code>.</p>
+  <header>
+    <div class="badge">Lesson 2</div>
+    <h1>tRPC & The API Layer</h1>
+    <div class="subtitle">Bypass REST boilerplate and share types directly between frontend and backend.</div>
+  </header>
 
-  <h2>What is tRPC?</h2>
-  <p>TypeScript Remote Procedure Call. No REST endpoints. No GraphQL schemas. Just export TS function from server, import type on client.</p>
-  
-  <h2>How it works</h2>
-  <ol>
-    <li>Write router (server): <code>getUser: publicProcedure.query(() => db.query.users.findMany())</code></li>
-    <li>Export AppRouter type.</li>
-    <li>Use on client (React): <code>const { data } = trpc.getUser.useQuery()</code></li>
-  </ol>
-  <p>If rename <code>getUser</code> to <code>fetchUser</code> on server -> Client build fails instantly. Type safety E2E.</p>
-  
-  <h2>Your Task</h2>
-  <div class="box">
-    <p>Read <a href="https://trpc.io/docs/quickstart" target="_blank">tRPC Quickstart</a> to see real code.</p>
-  </div>
-  
-  <h2>Question (Reply in Chat)</h2>
-  <div class="box">
-    <p>If need to change data in DB (like create new post), do you use <code>publicProcedure.query</code> or <code>publicProcedure.mutation</code>?</p>
+  <div class="card">
+    <p>Correct! You start at the database layer (<code>packages/db</code>) because data constraints and schemas govern the application structure.</p>
   </div>
 
-  <p>Tell agent your answer to continue.</p>
+  <div class="card">
+    <h2>Why do we use tRPC?</h2>
+    <p>Traditionally, developers write REST APIs with endpoints and document them using tools like OpenAPI (Swagger). The client fetches data and parses it without compile-time guarantees of the shape. If you change a database schema field, the client has no idea until it runs and breaks.</p>
+    <p><strong>tRPC (TypeScript Remote Procedure Call)</strong> eliminates this. By exporting the TypeScript <code>AppRouter</code> type definition from your backend, your React web app and Expo mobile app can call backend functions directly with full compiler-level validation. If you change or rename an API query on the backend, the compiler will instantly throw errors on the frontend.</p>
+  </div>
+
+  <div class="card">
+    <h2>How it works under the hood</h2>
+    <ol>
+      <li><strong>Define Procedure (Server):</strong> You write an API route, e.g., <code>getUser: publicProcedure.query(() => db.query.users.findMany())</code>.</li>
+      <li><strong>Export Types:</strong> The backend exports the types of the router, but no actual runtime code.</li>
+      <li><strong>Invoke Procedure (Client):</strong> The React app imports the types and uses a hook like <code>trpc.getUser.useQuery()</code>.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Your Lesson Tasks</h2>
+    <p>Read the official <a href="https://trpc.io/docs/quickstart" target="_blank">tRPC Quickstart Guide</a> to understand the router definition and request/response structure.</p>
+  </div>
+
+  <div class="card question-box">
+    <h2>Review Question</h2>
+    <p>If you need to change data in the database (for example, creating a new post), do you use a <code>publicProcedure.query</code> or a <code>publicProcedure.mutation</code>?</p>
+    <p>Submit your answer in the chat to proceed to the next lesson.</p>
+  </div>
+
+  <div class="nav-links">
+    <a href="0001-monorepo-intro.html" class="nav-btn secondary">← Back</a>
+    <a href="0003-server-and-client.html" class="nav-btn primary">Next: Lesson 3 →</a>
+  </div>
 </body>
 </html>

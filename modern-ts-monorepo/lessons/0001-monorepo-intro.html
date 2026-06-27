@@ -1,40 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  :root { --bg-color: #f8fafc; --text-color: #1e293b; --primary-color: #3b82f6; --card-bg: #ffffff; }
-  body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg-color); color: var(--text-color); }
-  h1, h2, h3 { color: #0f172a; }
-  .box { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border-left: 4px solid var(--primary-color); }
-  a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
-  a:hover { text-decoration: underline; }
-  code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
-</style>
-<title>Lesson 1: Monorepo Intro</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 1: Monorepo Intro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --card-bg: #151b2c;
+      --border-color: #232d45;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary: #4f46e5;
+      --primary-hover: #6366f1;
+      --accent: #06b6d4;
+      --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+      --radius: 12px;
+      --shadow: 0 10px 30px -10px rgba(2, 3, 6, 0.7);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.7;
+      padding: 2.5rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    header {
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.025em;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      color: #ffffff;
+      border-left: 4px solid var(--accent);
+      padding-left: 12px;
+    }
+    p {
+      margin-bottom: 1.25rem;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+    strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    a:hover {
+      color: var(--primary-hover);
+      text-decoration: underline;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #313f5e;
+    }
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      color: var(--text-muted);
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+      background: #1e2538;
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+      color: #e2e8f0;
+      border: 1px solid #2d3750;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 50px;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      margin-bottom: 1rem;
+    }
+    .question-box {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
+      border: 1px solid rgba(79, 70, 229, 0.3);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      margin-top: 1.5rem;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 2rem;
+    }
+    .nav-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      transition: all 0.2s ease;
+      background: var(--accent-gradient);
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .nav-btn:hover {
+      opacity: 0.9;
+      text-decoration: none;
+      transform: translateY(-1px);
+    }
+  </style>
 </head>
 <body>
-  <h1>Lesson 1: Monorepo Intro</h1>
-  <p>Welcome. We build modern TS app. First step: Understand Monorepo structure.</p>
-  
-  <h2>What is Monorepo?</h2>
-  <p>One git repo -> Many apps (Web, Mobile) + Many packages (DB, API). Code share easy. Types share easy.</p>
+  <header>
+    <div class="badge">Lesson 1</div>
+    <h1>Monorepo Introduction</h1>
+    <div class="subtitle">Understand the basic structure and purpose of a monorepo build system.</div>
+  </header>
 
-  <h2>Why Turborepo?</h2>
-  <p>Monorepo slow without cache. Turbo cache tasks (build, lint, test). If file not change -> skip task -> fast.</p>
-  
-  <h2>Your Task</h2>
-  <div class="box">
-    <p>1. Read <a href="../reference/stack-architecture.html">Stack Architecture Reference</a> to see "Why we need it" and "Missing things".</p>
-    <p>2. Look closely at <strong>Feature Dev Process</strong> section.</p>
-  </div>
-  
-  <h2>Question (Reply in Chat)</h2>
-  <div class="box">
-    <p>If you add "User Profile" feature to project, which folder you touch FIRST? <code>apps/web</code> or <code>packages/db</code>?</p>
+  <div class="card">
+    <h2>What is a Monorepo?</h2>
+    <p>A monorepo is a single Git repository containing multiple distinct projects. For instance, rather than having separate repositories for your web frontend, mobile application, and backend API, you consolidate them under one folder structure. This makes code sharing, refactoring, and type sharing significantly easier.</p>
   </div>
 
-  <p>Tell agent your answer to continue.</p>
+  <div class="card">
+    <h2>Why do we use Turborepo?</h2>
+    <p>Developing in a monorepo can become slow as the codebase grows. Turborepo is a smart build system that understands dependencies. It caches the results of scripts (like building, linting, or testing). If a file in a package hasn't changed, Turborepo skips running the script and restores the cached output, keeping development fast.</p>
+  </div>
+
+  <div class="card">
+    <h2>Your Lesson Tasks</h2>
+    <ol>
+      <li>Open and read the <a href="../reference/stack-architecture.html">Stack Architecture Reference</a> to see the entire design blueprint.</li>
+      <li>Pay close attention to the <strong>Feature Development Workflow</strong> section to understand how code modifications propagate through the repo.</li>
+    </ol>
+  </div>
+
+  <div class="card question-box">
+    <h2>Review Question</h2>
+    <p>If you were to add a new "User Profile" feature to the project, which folder would you modify first? <code>apps/web</code> or <code>packages/db</code>?</p>
+    <p>Submit your answer in the chat to proceed to the next lesson.</p>
+  </div>
+
+  <div class="nav-links">
+    <a href="0002-trpc-api.html" class="nav-btn">Next: Lesson 2 →</a>
+  </div>
 </body>
 </html>
