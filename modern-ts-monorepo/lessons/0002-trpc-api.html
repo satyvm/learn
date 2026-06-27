@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root { --bg-color: #f8fafc; --text-color: #1e293b; --primary-color: #3b82f6; --card-bg: #ffffff; }
+  body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg-color); color: var(--text-color); }
+  h1, h2, h3 { color: #0f172a; }
+  .box { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border-left: 4px solid var(--primary-color); }
+  a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+  a:hover { text-decoration: underline; }
+  code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  pre { background: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; }
+</style>
+<title>Lesson 2: tRPC & API Layer</title>
+</head>
+<body>
+  <h1>Lesson 2: tRPC & API Layer</h1>
+  <p>Correct. DB first. Data rules app.</p>
+  
+  <h2>Step 2: API Layer</h2>
+  <p>DB schema done -> need API to fetch/mutate data. Enter <strong>tRPC</strong> in <code>packages/api</code>.</p>
+
+  <h2>What is tRPC?</h2>
+  <p>TypeScript Remote Procedure Call. No REST endpoints. No GraphQL schemas. Just export TS function from server, import type on client.</p>
+  
+  <h2>How it works</h2>
+  <ol>
+    <li>Write router (server): <code>getUser: publicProcedure.query(() => db.query.users.findMany())</code></li>
+    <li>Export AppRouter type.</li>
+    <li>Use on client (React): <code>const { data } = trpc.getUser.useQuery()</code></li>
+  </ol>
+  <p>If rename <code>getUser</code> to <code>fetchUser</code> on server -> Client build fails instantly. Type safety E2E.</p>
+  
+  <h2>Your Task</h2>
+  <div class="box">
+    <p>Read <a href="https://trpc.io/docs/quickstart" target="_blank">tRPC Quickstart</a> to see real code.</p>
+  </div>
+  
+  <h2>Question (Reply in Chat)</h2>
+  <div class="box">
+    <p>If need to change data in DB (like create new post), do you use <code>publicProcedure.query</code> or <code>publicProcedure.mutation</code>?</p>
+  </div>
+
+  <p>Tell agent your answer to continue.</p>
+</body>
+</html>

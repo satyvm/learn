@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root { --bg-color: #f8fafc; --text-color: #1e293b; --primary-color: #3b82f6; --card-bg: #ffffff; }
+  body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg-color); color: var(--text-color); }
+  h1, h2, h3 { color: #0f172a; }
+  .box { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border-left: 4px solid var(--primary-color); }
+  a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+  a:hover { text-decoration: underline; }
+  code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  pre { background: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; }
+</style>
+<title>Lesson 5: First Run</title>
+</head>
+<body>
+  <h1>Lesson 5: First Run</h1>
+  <p>Good choice. Scaffold saves hours. Focus on code, not config.</p>
+  
+  <h2>Run Scaffold</h2>
+  <p>Open terminal in workspace.</p>
+  <pre><code>bun create t3-turbo my-new-app</code></pre>
+  <p>Follow CLI prompts. Choose <strong>Bun</strong>. Let it install.</p>
+
+  <h2>Start Dev Server</h2>
+  <p>Go to folder. Run dev.</p>
+  <pre><code>cd my-new-app
+bun dev</code></pre>
+  <p>Turbo starts web, native, and server all at once. Cache magic active.</p>
+  
+  <h2>Your Task</h2>
+  <div class="box">
+    <p>Run scaffold command. Look at generated <code>apps/</code> and <code>packages/</code>. See if they match our Stack Architecture map.</p>
+  </div>
+  
+  <h2>Question (Reply in Chat)</h2>
+  <div class="box">
+    <p>Look at <code>package.json</code> in root of generated app. What tool runs the <code>"dev"</code> script across all apps? (Hint: it starts with T)</p>
+  </div>
+  
+  <p>Tell agent answer. Or ask agent to run scaffold for you.</p>
+</body>
+</html>

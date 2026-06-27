@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root { --bg-color: #f8fafc; --text-color: #1e293b; --primary-color: #3b82f6; --card-bg: #ffffff; }
+  body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg-color); color: var(--text-color); }
+  h1, h2, h3 { color: #0f172a; }
+  .box { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border-left: 4px solid var(--primary-color); }
+  a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+  a:hover { text-decoration: underline; }
+  code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  pre { background: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; }
+</style>
+<title>Lesson 4: Project Init</title>
+</head>
+<body>
+  <h1>Lesson 4: Project Init</h1>
+  <p>Correct. Shadcn + Tailwind = Fast UI.</p>
+  
+  <h2>Start From Scratch</h2>
+  <p>Architecture clear. Now we build.</p>
+  <p>Building Turbo monorepo from zero hard. Too much config (TS, Biome, apps). Use scaffold tool instead.</p>
+
+  <h2>Create-T3-Turbo</h2>
+  <p>Best starting point: <code>create-t3-turbo</code>. Generates React/Expo/tRPC/Drizzle monorepo instantly. Very close to target stack.</p>
+  <pre><code>bun create t3-turbo my-app</code></pre>
+
+  <h2>Alternatively: Build Manual (Hard Mode)</h2>
+  <ol>
+    <li><code>bun init</code></li>
+    <li><code>bun install turbo --dev</code></li>
+    <li>Add <code>turbo.json</code>.</li>
+    <li>Create <code>apps/</code> and <code>packages/</code>.</li>
+    <li>Configure <code>package.json</code> workspaces.</li>
+  </ol>
+  
+  <h2>Your Task</h2>
+  <div class="box">
+    <p>Read <a href="https://github.com/t3-oss/create-t3-turbo" target="_blank">create-t3-turbo GitHub</a>.</p>
+  </div>
+  
+  <h2>Question (Reply in Chat)</h2>
+  <div class="box">
+    <p>To learn deep: build manual or use scaffold?</p>
+    <p>Tell agent what path you want take next: "Manual" or "Scaffold".</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root { --bg-color: #f8fafc; --text-color: #1e293b; --primary-color: #3b82f6; --card-bg: #ffffff; }
+  body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg-color); color: var(--text-color); }
+  h1, h2, h3 { color: #0f172a; }
+  .box { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border-left: 4px solid var(--primary-color); }
+  a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+  a:hover { text-decoration: underline; }
+  code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+</style>
+<title>Lesson 1: Monorepo Intro</title>
+</head>
+<body>
+  <h1>Lesson 1: Monorepo Intro</h1>
+  <p>Welcome. We build modern TS app. First step: Understand Monorepo structure.</p>
+  
+  <h2>What is Monorepo?</h2>
+  <p>One git repo -> Many apps (Web, Mobile) + Many packages (DB, API). Code share easy. Types share easy.</p>
+
+  <h2>Why Turborepo?</h2>
+  <p>Monorepo slow without cache. Turbo cache tasks (build, lint, test). If file not change -> skip task -> fast.</p>
+  
+  <h2>Your Task</h2>
+  <div class="box">
+    <p>1. Read <a href="../reference/stack-architecture.html">Stack Architecture Reference</a> to see "Why we need it" and "Missing things".</p>
+    <p>2. Look closely at <strong>Feature Dev Process</strong> section.</p>
+  </div>
+  
+  <h2>Question (Reply in Chat)</h2>
+  <div class="box">
+    <p>If you add "User Profile" feature to project, which folder you touch FIRST? <code>apps/web</code> or <code>packages/db</code>?</p>
+  </div>
+
+  <p>Tell agent your answer to continue.</p>
+</body>
+</html>

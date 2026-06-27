@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root { --bg-color: #f8fafc; --text-color: #1e293b; --primary-color: #3b82f6; --card-bg: #ffffff; }
+  body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg-color); color: var(--text-color); }
+  h1, h2, h3 { color: #0f172a; }
+  code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  pre { background: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; }
+  ul, ol { margin-bottom: 1.5rem; }
+  li { margin-bottom: 0.5rem; }
+  .card { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); margin-bottom: 2rem; }
+</style>
+<title>Stack Architecture Reference</title>
+</head>
+<body>
+  <h1>Stack Architecture Reference</h1>
+  
+  <div class="card">
+    <h2>Tech Stack "Why"</h2>
+    <ul>
+      <li><strong>Turborepo:</strong> Fast monorepo build tool. Cache task runs. Manage dependencies between apps/packages.</li>
+      <li><strong>TypeScript + tRPC:</strong> E2E type safety. API changes break build -> catch bugs early.</li>
+      <li><strong>Bun:</strong> Fast JS runtime. Replace Node/npm/yarn. Speed up install/dev.</li>
+      <li><strong>Hono:</strong> Edge-ready server framework. Tiny, fast. Perfect for tRPC endpoints.</li>
+      <li><strong>Drizzle + Postgres:</strong> TS-first ORM. Type-safe SQL. Migrate easy.</li>
+      <li><strong>Better-Auth:</strong> Drop-in auth. Type-safe session management.</li>
+      <li><strong>TanStack Router:</strong> File-based routing for React. Type-safe links/params.</li>
+      <li><strong>React Native + Expo:</strong> Mobile app. Share React logic with Web.</li>
+      <li><strong>Tauri:</strong> Desktop app. Lightweight webview, Rust backend.</li>
+      <li><strong>Tailwind + shadcn/ui:</strong> Rapid UI. Copy-paste components. Accessible.</li>
+      <li><strong>Biome + Husky:</strong> Fast lint/format (replace Prettier/ESLint). Pre-commit hooks guarantee clean code.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Missing Pieces?</h2>
+    <p>Stack very complete. Might need:</p>
+    <ul>
+      <li><strong>Hosting/Deployment:</strong> Vercel/Cloudflare for Web. Railway/Fly.io for DB/Server. EAS for Expo.</li>
+      <li><strong>State Management:</strong> Zustand or Jotai (if complex client state needed outside server cache). TanStack Query (built into tRPC).</li>
+      <li><strong>CI/CD:</strong> GitHub Actions to run Biome, tests, and Turbo build on PR.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Project Structure Mapping</h2>
+    <pre>
+project-x/
+├── apps/
+│   ├── web/     -> Browser UI (React). Fetches data via tRPC.
+│   ├── native/  -> Mobile UI (Expo). Fetches data via tRPC.
+│   └── server/  -> Hono API. Exposes tRPC router. Connects to DB.
+├── packages/
+│   ├── api/     -> tRPC routers, controllers. Imports from `db` and `auth`.
+│   ├── auth/    -> Better-Auth config.
+│   └── db/      -> Drizzle schema, migrations, DB connection.
+    </pre>
+  </div>
+
+  <div class="card">
+    <h2>Feature Dev Process</h2>
+    <ol>
+      <li><strong>DB (<code>packages/db</code>):</strong> Add table schema in Drizzle. Generate migration. Push to Postgres.</li>
+      <li><strong>API (<code>packages/api</code>):</strong> Add tRPC route (e.g., <code>createPost</code>). Import DB schema. Write logic.</li>
+      <li><strong>Server (<code>apps/server</code>):</strong> Mount new router (usually auto if setup right).</li>
+      <li><strong>Web/Native (<code>apps/web</code>):</strong> Use tRPC client (e.g., <code>trpc.post.createPost.useMutation()</code>). Build UI with shadcn/ui.</li>
+    </ol>
+  </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root { --bg-color: #f8fafc; --text-color: #1e293b; --primary-color: #3b82f6; --card-bg: #ffffff; }
+  body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg-color); color: var(--text-color); }
+  h1, h2, h3 { color: #0f172a; }
+  .box { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border-left: 4px solid var(--primary-color); }
+  a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+  a:hover { text-decoration: underline; }
+  code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  pre { background: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; }
+</style>
+<title>Lesson 3: Server & Client</title>
+</head>
+<body>
+  <h1>Lesson 3: Server & Client</h1>
+  <p>Correct. Mutation for write. Query for read.</p>
+  
+  <h2>Step 3: Server (Hono)</h2>
+  <p>tRPC needs HTTP server to listen. <code>apps/server</code> uses Hono.</p>
+  <p>Hono is fast, runs anywhere (Node, Bun, Cloudflare). We mount tRPC on Hono route: <code>app.use('/trpc/*', trpcServer(...))</code></p>
+
+  <h2>Step 4: Client (Web/Native)</h2>
+  <p>Now UI time. <code>apps/web</code> (React + TanStack Router) or <code>apps/native</code> (Expo).</p>
+  <p>Client imports <code>AppRouter</code> type from <code>packages/api</code>. No runtime code imported, just types!</p>
+  
+  <h2>Component workflow</h2>
+  <ol>
+    <li>Component mounts.</li>
+    <li>Calls <code>trpc.post.getPosts.useQuery()</code>.</li>
+    <li>Renders with <strong>shadcn/ui</strong> and <strong>Tailwind</strong>.</li>
+  </ol>
+  
+  <h2>Your Task</h2>
+  <div class="box">
+    <p>Read <a href="https://hono.dev/getting-started/basic" target="_blank">Hono Basics</a>.</p>
+    <p>Read <a href="https://ui.shadcn.com/docs" target="_blank">shadcn/ui Introduction</a>.</p>
+  </div>
+  
+  <h2>Question (Reply in Chat)</h2>
+  <div class="box">
+    <p>If you build a button that deletes a post, do you write the CSS manually or use a pre-built shadcn Button / Tailwind classes?</p>
+  </div>
+
+  <p>Tell agent your answer to continue.</p>
+</body>
+</html>

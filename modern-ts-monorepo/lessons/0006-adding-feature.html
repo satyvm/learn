@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root { --bg-color: #f8fafc; --text-color: #1e293b; --primary-color: #3b82f6; --card-bg: #ffffff; }
+  body { font-family: 'Inter', sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg-color); color: var(--text-color); }
+  h1, h2, h3 { color: #0f172a; }
+  .box { background: var(--card-bg); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); border-left: 4px solid var(--primary-color); }
+  a { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+  a:hover { text-decoration: underline; }
+  code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; font-family: monospace; }
+  pre { background: #1e293b; color: #f8fafc; padding: 1rem; border-radius: 8px; overflow-x: auto; font-family: monospace; }
+</style>
+<title>Lesson 6: Add Feature E2E</title>
+</head>
+<body>
+  <h1>Lesson 6: Add Feature E2E</h1>
+  <p>Correct. <code>turbo</code> orchestrates tasks. Fast cache.</p>
+  
+  <h2>Adding "Comments" Feature</h2>
+  <p>To master stack, build feature End-to-End (E2E). Example: "Comments" on a post.</p>
+
+  <h3>Step 1: DB (<code>packages/db</code>)</h3>
+  <pre><code>// schema.ts
+export const comments = pgTable("comment", {
+  id: serial("id").primaryKey(),
+  postId: integer("post_id").notNull(),
+  content: text("content").notNull(),
+});</code></pre>
+
+  <h3>Step 2: API (<code>packages/api</code>)</h3>
+  <pre><code>// router/post.ts
+addComment: publicProcedure
+  .input(z.object({ postId: z.number(), content: z.string() }))
+  .mutation(async ({ ctx, input }) => {
+    return ctx.db.insert(comments).values(input);
+  })</code></pre>
+
+  <h3>Step 3: UI (<code>apps/web</code>)</h3>
+  <pre><code>// PostView.tsx
+const mutation = trpc.post.addComment.useMutation();
+
+&lt;Button onClick={() => mutation.mutate({ postId: 1, content: "Nice!" })}&gt;
+  Comment
+&lt;/Button&gt;</code></pre>
+
+  <h2>Your Task</h2>
+  <div class="box">
+    <p>Notice how type flows from DB -> API -> UI. If you change <code>content</code> to <code>text</code> in DB, UI will show type error.</p>
+  </div>
+  
+  <h2>Question (Reply in Chat)</h2>
+  <div class="box">
+    <p>In step 2, we use <code>z.object(...)</code> to validate input. What library does <code>z</code> come from? (Hint: starts with Z)</p>
+  </div>
+  
+  <p>Tell agent answer to continue.</p>
+</body>
+</html>
