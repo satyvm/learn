@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Read errors as a path · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="copper"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / TypeScript: Errors to End-to-End / Lesson 1</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">TypeScript: Errors to End-to-End</div><div class="rail-title">Locate the first meaningful mismatch in a nested TypeScript error.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>01 / 06</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:17%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 01 · Intermediate</div><h1>Read errors as a path</h1><p class="deck">Turn intimidating diagnostics into a sequence of small comparisons.</p><div class="objective"><strong>By the end</strong>Locate the first meaningful mismatch in a nested TypeScript error.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">A long error is usually a path through nested structure: assignment → property → callback → parameter. Read outside-in to learn the context, then inside-out to find the earliest false assumption.</p><div class="concept-grid"><article class="concept"><h3>Identify the operation</h3><p>First ask what TypeScript was checking: assignment, function call, return, generic constraint, or overload selection.</p></article><article class="concept"><h3>Follow indentation</h3><p>Repeated “is not assignable” clauses form a breadcrumb trail. The deepest specific mismatch is often actionable.</p></article><article class="concept"><h3>Inspect definitions</h3><p>Go to definition and hover the receiving type. Documentation and declaration files reveal the contract more reliably than guessing.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Reduce the diagnostic</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>type User = { id: string; role: "admin" | "member" };
+const user: User = { id: 42, role: "owner" };
+// path 1: user.id → number is not string
+// path 2: user.role → "owner" is outside the union</code></pre><div class="example-note">Fix one leaf at a time and rerun the compiler. Later errors may be consequences of the first incorrect shape.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Copy one real error into a scratch file.</li><li>State the checked operation in plain language.</li><li>Underline the deepest mismatch.</li><li>Inspect the target declaration before editing.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">In “argument callback is not assignable because its parameter is narrower,” which layer should you inspect first?</div><details><summary>Reveal answer</summary><p class="answer">The callback parameter contract—the deepest concrete mismatch—then work outward to understand why that callback was expected.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://www.typescriptlang.org/docs/handbook/intro.html" target="_blank" rel="noreferrer">TypeScript Handbook ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><span><small>Previous</small>Course index</span><a href="0002-narrowing-unknown.html"><small>Next</small>Narrow what you do not know</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

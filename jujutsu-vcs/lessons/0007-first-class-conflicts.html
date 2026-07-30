@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Conflicts can be committed · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="rose"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Jujutsu VCS (`jj`) / Lesson 7</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Jujutsu VCS (`jj`)</div><div class="rail-title">Create, inspect, resolve, and verify a conflicted change.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>07 / 08</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:88%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 07 · Git user → Productive</div><h1>Conflicts can be committed</h1><p class="deck">Understand why jj records conflicts and lets graph operations finish.</p><div class="objective"><strong>By the end</strong>Create, inspect, resolve, and verify a conflicted change.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Jujutsu stores a logical conflict in commits. A rebase can complete with conflicted commits, descendants can continue to rebase, and resolution can happen at the appropriate change.</p><div class="concept-grid"><article class="concept"><h3>Conflict is state, not mode</h3><p>There is no special rebase-in-progress ceremony. The graph marks conflicted commits and normal commands continue where meaningful.</p></article><article class="concept"><h3>Resolve at the introduction point</h3><p>Find the earliest conflicted change, create or edit a working copy there, resolve files, inspect, and squash the resolution into that change.</p></article><article class="concept"><h3>Markers carry sides</h3><p>Jujutsu’s markers may represent more than two sides and distinguish snapshots from diffs. Use jj resolve or edit deliberately.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Resolution loop</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>jj log -r 'conflicts()'
+jj new &lt;first-conflicted-change&gt;
+jj resolve              # or edit markers
+jj diff
+&lt;run focused tests&gt;
+jj squash
+jj log -r 'conflicts()'</code></pre><div class="example-note">Because descendants auto-rebase, resolving the earliest cause may clear conflicts later in the stack when their changes are independent.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Create two changes that edit the same line.</li><li>Rebase to create a conflict.</li><li>Inspect conflict log and file markers.</li><li>Resolve with intended semantics and squash.</li><li>Verify no conflicts and run tests.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">Why can a jj rebase succeed while producing conflicts?</div><details><summary>Reveal answer</summary><p class="answer">Conflicted content is representable in commits, so graph transformation completes and resolution becomes a later explicit change.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://docs.jj-vcs.dev/latest/conflicts/" target="_blank" rel="noreferrer">Jujutsu conflicts ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0006-bookmarks-remotes-github.html"><small>Previous</small>Publish through Git bookmarks</a><a href="0008-operation-log-capstone.html"><small>Next</small>Recover, then trust yourself</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

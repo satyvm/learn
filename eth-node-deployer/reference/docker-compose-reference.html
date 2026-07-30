@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Compose runtime checklist · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="blue"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Ethereum Node Deployer / Compose runtime checklist</div>
+</div></header>
+<main id="main" class="reference-shell"><div class="eyebrow">Specialist reference · print-friendly</div><h1>Compose runtime checklist</h1><p class="deck">A secure self-service control plane from API request to healthy node.</p><h2>Service graph</h2><pre><code>Lighthouse ── Engine API + JWT ── Nethermind
+    │                                  │
+    └──── metrics ─▶ Prometheus ◀──────┘
+                           │
+                        Grafana
+Public ─▶ Caddy ─▶ explicitly allowed routes</code></pre><h2>Configuration review</h2><table><tr><th>Area</th><th>Check</th></tr><tr><td>Images</td><td>Pin immutable versions; record upgrade notes</td></tr><tr><td>Secrets</td><td>Mount JWT and credentials with narrow permissions; never log</td></tr><tr><td>Networks</td><td>Keep Engine API, metrics, and admin ports private</td></tr><tr><td>Storage</td><td>Use explicit persistent volumes and tested ownership</td></tr><tr><td>Health</td><td>Probe RPC response, peers, sync progress, and dependency readiness</td></tr><tr><td>Shutdown</td><td>Allow graceful client stop before infrastructure teardown</td></tr></table><h2>Verification commands</h2><pre><code>docker compose config
+docker compose pull
+docker compose up -d
+docker compose ps
+docker compose logs --since=10m &lt;service&gt;</code></pre>
+<h2>Continue learning</h2><p><a href="field-guide.html">Open the complete Ethereum Node Deployer field guide →</a></p>
+<p class="teacher-note">Use this page during practice, then close it and retrieve the structure from memory.</p></main></body></html>

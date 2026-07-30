@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Recover, then trust yourself · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="rose"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Jujutsu VCS (`jj`) / Lesson 8</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Jujutsu VCS (`jj`)</div><div class="rail-title">Diagnose a mistaken rewrite, restore a prior repository operation, and finish a publishable stack.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>08 / 08</div><div><span>Study time</span>45–60 min</div></div>
+  <div class="rail-progress"><i style="width:100%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 08 · Git user → Productive</div><h1>Recover, then trust yourself</h1><p class="deck">Use the operation log as the safety net for an ambitious stack cleanup.</p><div class="objective"><strong>By the end</strong>Diagnose a mistaken rewrite, restore a prior repository operation, and finish a publishable stack.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Every repository mutation is recorded in an operation log separate from commit history. jj undo reverses the latest operation; op log and op restore let you inspect and return to earlier repository views.</p><div class="concept-grid"><article class="concept"><h3>Operations are repository-wide</h3><p>An operation may change commits, bookmarks, working copy, and remote views. Read its description before restoring.</p></article><article class="concept"><h3>Undo is not magic erasure</h3><p>Undo creates a new operation that reverses the prior one, preserving auditability and allowing further recovery.</p></article><article class="concept"><h3>Confidence comes from verification</h3><p>Before and after recovery, inspect status, graph, diff, bookmarks, and tests. Name the invariant you are restoring.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Capstone</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>1. create a four-change feature stack
+2. split a mixed change
+3. squash two fixes into their owners
+4. rebase onto updated main@origin
+5. resolve any conflicts
+6. intentionally move a bookmark wrong
+7. recover with op log + undo/restore
+8. push one reviewed feature bookmark</code></pre><div class="example-note">Save graph snapshots before major steps. At the end, explain the difference among change history, commit graph, bookmark movement, and operation history.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Complete the eight-step capstone in a sandbox.</li><li>Record one mistaken operation and its recovery.</li><li>Write a Git-to-jj command concept map.</li><li>Repeat the daily workflow after two days from memory.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">What does the operation log record that commit history does not?</div><details><summary>Reveal answer</summary><p class="answer">Repository-level mutations such as rewrites, bookmark moves, snapshots, fetches, and undos—views of how the repo state evolved.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://docs.jj-vcs.dev/latest/tutorial/" target="_blank" rel="noreferrer">Jujutsu tutorial ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0007-first-class-conflicts.html"><small>Previous</small>Conflicts can be committed</a><a href="../../home.html"><small>Complete track</small>Return to curriculum</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

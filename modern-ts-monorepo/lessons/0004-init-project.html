@@ -1,229 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 4: Project Initialization</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0b0f19;
-      --card-bg: #151b2c;
-      --border-color: #232d45;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --primary: #4f46e5;
-      --primary-hover: #6366f1;
-      --accent: #06b6d4;
-      --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-      --radius: 12px;
-      --shadow: 0 10px 30px -10px rgba(2, 3, 6, 0.7);
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.7;
-      padding: 2.5rem 1.5rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    header {
-      margin-bottom: 3rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 2rem;
-    }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.025em;
-    }
-    .subtitle {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      font-weight: 400;
-    }
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      color: #ffffff;
-      border-left: 4px solid var(--accent);
-      padding-left: 12px;
-    }
-    p {
-      margin-bottom: 1.25rem;
-      color: var(--text-muted);
-      font-size: 1.05rem;
-    }
-    strong {
-      color: #ffffff;
-      font-weight: 600;
-    }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-    a:hover {
-      color: var(--primary-hover);
-      text-decoration: underline;
-    }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: #313f5e;
-    }
-    ul, ol {
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-      color: var(--text-muted);
-    }
-    li {
-      margin-bottom: 0.5rem;
-    }
-    code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9em;
-      background: #1e2538;
-      padding: 0.2rem 0.4rem;
-      border-radius: 6px;
-      color: #e2e8f0;
-      border: 1px solid #2d3750;
-    }
-    pre {
-      font-family: 'JetBrains Mono', monospace;
-      background: #0f1320;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      overflow-x: auto;
-      margin-bottom: 1.5rem;
-      box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.6);
-    }
-    pre code {
-      background: none;
-      border: none;
-      padding: 0;
-      font-size: 0.95em;
-    }
-    .badge {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border-radius: 50px;
-      background: var(--accent-gradient);
-      color: #ffffff;
-      margin-bottom: 1rem;
-    }
-    .question-box {
-      background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
-      border: 1px solid rgba(79, 70, 229, 0.3);
-      border-left: 4px solid var(--primary);
-      padding: 1.5rem;
-      border-radius: var(--radius);
-      margin-top: 1.5rem;
-    }
-    .nav-links {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 3rem;
-      border-top: 1px solid var(--border-color);
-      padding-top: 2rem;
-    }
-    .nav-btn {
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius);
-      font-weight: 600;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-    .nav-btn.primary {
-      background: var(--accent-gradient);
-      color: #ffffff;
-    }
-    .nav-btn.primary:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
-    .nav-btn.secondary {
-      background: transparent;
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-    }
-    .nav-btn.secondary:hover {
-      background: #1a2236;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="badge">Lesson 4</div>
-    <h1>Project Initialization</h1>
-    <div class="subtitle">Scaffold a full-stack monorepo project structure instantly.</div>
-  </header>
-
-  <div class="card">
-    <p>Correct! We use a pre-built shadcn Button and customize it using Tailwind CSS utility classes. This provides accessible, standard components and speeds up styling workflow.</p>
-  </div>
-
-  <div class="card">
-    <h2>Starting a Project from Scratch</h2>
-    <p>Setting up a Turborepo monorepo manually is highly configuration-intensive. You must configure individual TypeScript configs (<code>tsconfig.json</code>) in all directories, manage peer dependency version alignment, set up package-manager workspaces, and configure Turborepo pipelines.</p>
-    <p>To avoid config fatigue, we recommend using a scaffolding script.</p>
-  </div>
-
-  <div class="card">
-    <h2>The create-t3-turbo Tool</h2>
-    <p>The T3 community provides an official starter boilerplate named <code>create-t3-turbo</code>. This scaffold initializes a monorepo configured with Turborepo, Bun workspaces, Expo React Native, a Next.js (or React) frontend, Drizzle ORM, tRPC, Tailwind, and database configuration templates.</p>
-    <pre><code>bun create t3-turbo my-app</code></pre>
-  </div>
-
-  <div class="card">
-    <h2>The Alternative: Manual Configuration (Hard Mode)</h2>
-    <p>If you choose to do a manual configuration:</p>
-    <ol>
-      <li>Initialize the repository: <code>bun init</code></li>
-      <li>Install Turbo: <code>bun install turbo --dev</code></li>
-      <li>Create and write a <code>turbo.json</code> configuration file.</li>
-      <li>Establish directories for <code>apps/</code> and <code>packages/</code>.</li>
-      <li>Define workspaces inside the root-level <code>package.json</code>.</li>
-    </ol>
-  </div>
-
-  <div class="card">
-    <h2>Your Lesson Tasks</h2>
-    <p>Look through the <a href="https://github.com/t3-oss/create-t3-turbo" target="_blank">create-t3-turbo Github Repository</a> to see how they set up shared packages and application paths.</p>
-  </div>
-
-  <div class="card question-box">
-    <h2>Decision Point</h2>
-    <p>To continue learning this stack: would you prefer to see how to initialize the scaffolded project, or walk through a manual setup? Respond in the chat with <strong>"Scaffold"</strong> or <strong>"Manual"</strong>.</p>
-  </div>
-
-  <div class="nav-links">
-    <a href="0003-server-and-client.html" class="nav-btn secondary">← Back</a>
-    <a href="0005-scaffold-first-run.html" class="nav-btn primary">Next: Lesson 5 →</a>
-  </div>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Initialize with constraints · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="sage"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Modern TypeScript Monorepo / Lesson 4</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Modern TypeScript Monorepo</div><div class="rail-title">Create a project skeleton whose scripts and dependency rules communicate intent.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>04 / 07</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:57%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 04 · Intermediate</div><h1>Initialize with constraints</h1><p class="deck">Turn stack choices into explicit, testable decisions.</p><div class="objective"><strong>By the end</strong>Create a project skeleton whose scripts and dependency rules communicate intent.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Initialization is architecture in miniature. Package manager, runtime, module format, TypeScript settings, and task names become contracts that are expensive to change later.</p><div class="concept-grid"><article class="concept"><h3>Pin the execution model</h3><p>Choose one package manager and record the version. Make runtime assumptions explicit rather than relying on whichever binary is installed.</p></article><article class="concept"><h3>Start with strictness</h3><p>Strict TypeScript catches ambiguity while the codebase is small. Relax only a rule you can explain and document.</p></article><article class="concept"><h3>Normalize task names</h3><p>If every package offers build, test, lint, and typecheck where applicable, orchestration becomes predictable.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Root contract</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>{
+  "packageManager": "pnpm@10.x",
+  "scripts": {
+    "dev": "turbo dev",
+    "check": "turbo lint typecheck test",
+    "build": "turbo build"
+  }
+}</code></pre><div class="example-note">The root delegates; packages implement. This keeps the root from accumulating tool-specific commands for each app.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Write an architecture decision for package manager and runtime.</li><li>Create empty app and package directories with owners.</li><li>Define a single check command suitable for CI.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">What is the most useful output of initialization?</div><details><summary>Reveal answer</summary><p class="answer">A repeatable contract: another developer or CI runner can install, check, and run the workspace without hidden local knowledge.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://turborepo.com/docs" target="_blank" rel="noreferrer">Turborepo handbook ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0003-server-and-client.html"><small>Previous</small>Server and client responsibilities</a><a href="0005-scaffold-first-run.html"><small>Next</small>Make the first run observable</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

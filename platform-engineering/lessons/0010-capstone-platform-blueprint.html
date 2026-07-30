@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Capstone: the Atlas platform blueprint · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="violet"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Platform Engineering / Lesson 10</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Platform Engineering</div><div class="rail-title">Produce an incremental platform design with a thin first release and measurable roadmap.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>10 / 10</div><div><span>Study time</span>60–90 min</div></div>
+  <div class="rail-progress"><i style="width:100%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 10 · Foundations → Advanced</div><h1>Capstone: the Atlas platform blueprint</h1><p class="deck">Synthesize product, contracts, delivery, operations, and evolution.</p><div class="objective"><strong>By the end</strong>Produce an incremental platform design with a thin first release and measurable roadmap.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">A credible platform blueprint connects a user journey to capability contracts and operating ownership. It explains both the happy path and how the system fails, recovers, changes, and proves value.</p><div class="concept-grid"><article class="concept"><h3>Start thin</h3><p>Deliver one service type to one willing team with one environment. Learn before generalizing across every runtime.</p></article><article class="concept"><h3>Make ownership explicit</h3><p>Name who builds, operates, supports, secures, funds, and consumes each capability.</p></article><article class="concept"><h3>Roadmaps follow evidence</h3><p>Prioritize observed friction and risk. Avoid maturity models that reward adding tools without improving outcomes.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Blueprint layers</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>Experience: portal / CLI / docs
+Contracts: service, environment, deploy, observe
+Control: catalog, workflow, policy, identity
+Foundation: SCM, CI, registry, IaC, Kubernetes, telemetry
+Operations: SLOs, support, audit, cost, recovery
+Product: research, adoption, roadmap, deprecation</code></pre><div class="example-note">For every box record owner, API, source of truth, SLO, dependencies, failure mode, and escape hatch.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Write the Atlas user journey.</li><li>Draw the architecture and trust boundaries.</li><li>Define one API contract and one golden path.</li><li>Specify SLO, support, cost, and recovery.</li><li>Plan pilot, adoption review, and next hypothesis.</li><li>Present the blueprint as a 10-minute design review.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">What is the capstone’s strongest success signal?</div><details><summary>Reveal answer</summary><p class="answer">A target team repeatedly chooses the path and improves a named delivery outcome without transferring hidden toil to the platform team.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://tag-app-delivery.cncf.io/whitepapers/platforms/" target="_blank" rel="noreferrer">CNCF Platforms white paper ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0009-supply-chain-cost-resilience.html"><small>Previous</small>Supply chain, cost, and resilience</a><a href="../../home.html"><small>Complete track</small>Return to curriculum</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

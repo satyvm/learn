@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Observability and SLOs · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="violet"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Platform Engineering / Lesson 7</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Platform Engineering</div><div class="rail-title">Define an SLI, SLO, error budget, and diagnostic signal set for a platform capability.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>07 / 10</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:70%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 07 · Foundations → Advanced</div><h1>Observability and SLOs</h1><p class="deck">Use signals to answer user-impacting questions.</p><div class="objective"><strong>By the end</strong>Define an SLI, SLO, error budget, and diagnostic signal set for a platform capability.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Telemetry is evidence, not the goal. Start with a question or service objective, then choose traces, metrics, logs, and profiles that help decide whether users are succeeding and why not.</p><div class="concept-grid"><article class="concept"><h3>SLIs quantify experience</h3><p>Availability, latency, correctness, freshness, and durability are common dimensions. Measure at the boundary users experience.</p></article><article class="concept"><h3>Error budgets guide pace</h3><p>An SLO permits a bounded amount of failure. Budget policy connects reliability evidence to release and repair decisions.</p></article><article class="concept"><h3>Context connects signals</h3><p>Consistent service identity, environment, version, request IDs, and trace context turn isolated records into a system story.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Provisioning SLO</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>SLI = successful environment requests completed within 15m
+       / valid environment requests
+SLO = 99% over 28 days
+Exclude = user-cancelled and rejected policy requests
+Alert = multi-window burn rate, not every individual failure</code></pre><div class="example-note">The definition names valid population, success, time, and exclusions. Operators can reproduce the query.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Choose one platform capability.</li><li>Write numerator and denominator.</li><li>Set a target with stakeholder reasoning.</li><li>List trace, metric, and log fields needed to diagnose a miss.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">Why alert on burn rate?</div><details><summary>Reveal answer</summary><p class="answer">It relates current failure rate to how quickly the SLO’s error budget will be exhausted, balancing urgency with noise.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://opentelemetry.io/docs/concepts/" target="_blank" rel="noreferrer">OpenTelemetry concepts ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0006-developer-portal-golden-paths.html"><small>Previous</small>Catalogs, portals, and golden paths</a><a href="0008-identity-policy-secrets.html"><small>Next</small>Identity, policy, and secrets</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

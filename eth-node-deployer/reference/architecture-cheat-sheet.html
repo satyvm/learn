@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>System architecture and trust boundaries · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="blue"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Ethereum Node Deployer / System architecture and trust boundaries</div>
+</div></header>
+<main id="main" class="reference-shell"><div class="eyebrow">Specialist reference · print-friendly</div><h1>System architecture and trust boundaries</h1><p class="deck">A secure self-service control plane from API request to healthy node.</p><h2>Control flow</h2><pre><code>browser → authenticated API → durable operation → worker
+worker → Pulumi stack → AWS resources
+worker → SSH steps → host configuration
+host → Compose → execution + consensus + observability
+health evidence → database → API → browser</code></pre><h2>Sources of truth</h2><table><tr><th>Concern</th><th>Authority</th></tr><tr><td>User intent and workflow state</td><td>Application database</td></tr><tr><td>Cloud resource mapping</td><td>Pulumi state plus typed outputs</td></tr><tr><td>Host desired configuration</td><td>Versioned provisioning specification</td></tr><tr><td>Runtime health</td><td>Semantic probes and telemetry</td></tr><tr><td>Ethereum chain state</td><td>Execution and consensus client APIs</td></tr></table><div class="callout">Ready means every required boundary has observable evidence. It never means only “the VM exists.”</div>
+<h2>Continue learning</h2><p><a href="field-guide.html">Open the complete Ethereum Node Deployer field guide →</a></p>
+<p class="teacher-note">Use this page during practice, then close it and retrieve the structure from memory.</p></main></body></html>

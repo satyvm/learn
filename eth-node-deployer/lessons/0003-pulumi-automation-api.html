@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Provision with a durable program · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="blue"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Ethereum Node Deployer / Lesson 3</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Ethereum Node Deployer</div><div class="rail-title">Design a Pulumi service with isolated stacks, protected secrets, previews, and deterministic outputs.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>03 / 08</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:38%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 03 · Advanced</div><h1>Provision with a durable program</h1><p class="deck">Use Automation API without turning a web request into a fragile long-running process.</p><div class="objective"><strong>By the end</strong>Design a Pulumi service with isolated stacks, protected secrets, previews, and deterministic outputs.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Automation API embeds Pulumi’s engine, but the same infrastructure discipline applies: stable stack identity, remote state, provider credentials, concurrency control, preview, update, and destroy.</p><div class="concept-grid"><article class="concept"><h3>One stack identity per deployment</h3><p>A deterministic stack name makes retries find the same resources instead of duplicating them.</p></article><article class="concept"><h3>Outputs are contracts</h3><p>Return instance ID, address, volume ID, and security-group ID as typed outputs. The orchestrator consumes outputs, not log text.</p></article><article class="concept"><h3>Concurrency must be serialized</h3><p>Two updates to one stack can race. Use a queue or lock keyed by deployment and record the active attempt.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Program boundary</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>const stack = await LocalWorkspace.createOrSelectStack({ stackName, projectName, program });
+await stack.setConfig("aws:region", { value: region });
+const preview = await stack.preview();
+const result = await stack.up({ onOutput: appendLog });</code></pre><div class="example-note">In production, state and credentials must survive application restarts. Preview results can power policy checks and cost-aware confirmation before update.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>List stable stack inputs and outputs.</li><li>Define retry behavior after process death.</li><li>Add protect or retention policy for valuable volumes.</li><li>Design a typed destructive confirmation.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">What makes a Pulumi retry safe?</div><details><summary>Reveal answer</summary><p class="answer">Selecting the same durable stack with the same desired program and state, while serializing updates and inspecting the prior attempt.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://www.pulumi.com/docs/iac/using-pulumi/automation-api/" target="_blank" rel="noreferrer">Pulumi Automation API ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0002-database-and-auth.html"><small>Previous</small>Persist intent and enforce tenancy</a><a href="0004-ssh-provisioning-orchestrator.html"><small>Next</small>Make remote configuration idempotent</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

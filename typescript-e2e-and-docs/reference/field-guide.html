@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>TypeScript: Errors to End-to-End field guide · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="copper"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / TypeScript: Errors to End-to-End / Field guide</div>
+</div></header>
+<main id="main" class="reference-shell"><div class="eyebrow">Quick reference · print-friendly</div><h1>TypeScript: Errors to End-to-End field guide</h1><p class="deck">Read types, validate boundaries, and deliver robust vertical slices.</p><h2>Error reduction protocol</h2><ol><li>Name the operation being checked.</li><li>Read the outer context once.</li><li>Follow nested properties to the deepest concrete mismatch.</li><li>Inspect the receiving declaration.</li><li>Fix one false assumption and rerun.</li></ol><h2>Boundary ladder</h2><pre><code>unknown → narrow or parse → domain input → authorized operation
+→ public result → exhaustive interface state</code></pre><h2>Escape-hatch review</h2><table><tr><th>Construct</th><th>Meaning</th><th>Question</th></tr><tr><td>unknown</td><td>Evidence required</td><td>What guard proves the operation?</td></tr><tr><td>any</td><td>Checking disabled</td><td>Can this remain at a tiny typed adapter?</td></tr><tr><td>as T</td><td>Unchecked assertion</td><td>Where is T established at runtime?</td></tr><tr><td>never</td><td>No value possible</td><td>Can this enforce exhaustiveness?</td></tr></table>
+<h2>Course path</h2><ol><li><a href="../lessons/0001-reading-docs-and-errors.html">Read errors as a path</a></li><li><a href="../lessons/0002-narrowing-unknown.html">Narrow what you do not know</a></li><li><a href="../lessons/0003-generics-inference.html">Read generic relationships</a></li><li><a href="../lessons/0004-domain-modeling.html">Make invalid states difficult</a></li><li><a href="../lessons/0005-runtime-schemas.html">Validate at every trust boundary</a></li><li><a href="../lessons/0006-e2e-contract.html">Prove an end-to-end contract</a></li></ol>
+<p class="teacher-note">Compress this reference further as your fluency grows. Add personal failure signatures and commands only after you understand them.</p></main></body></html>

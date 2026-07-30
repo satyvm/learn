@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Runtime foundations: Linux, networks, DNS, TLS · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="violet"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Platform Engineering / Lesson 2</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Platform Engineering</div><div class="rail-title">Trace one HTTPS request from DNS lookup to process and back.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>02 / 10</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:20%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 02 · Foundations → Advanced</div><h1>Runtime foundations: Linux, networks, DNS, TLS</h1><p class="deck">Understand the substrate before adding orchestration.</p><div class="objective"><strong>By the end</strong>Trace one HTTPS request from DNS lookup to process and back.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Most platform incidents cross layers. Use a packet’s journey as the map: name resolution → routing → connection → TLS identity → load balancing → host/container socket → application.</p><div class="concept-grid"><article class="concept"><h3>Names become addresses</h3><p>DNS caches and TTLs create time-dependent behavior. An updated record does not mean every resolver sees it immediately.</p></article><article class="concept"><h3>TLS proves endpoint identity</h3><p>Certificates bind names to keys; trust roots, SNI, validity, and renewal all affect handshakes.</p></article><article class="concept"><h3>Ports are process boundaries</h3><p>A listening socket, firewall rule, security group, network policy, and load balancer must align. Check each hop independently.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Request trace</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>client → recursive DNS → authoritative DNS
+client → load balancer:443 [TLS for api.example]
+load balancer → node/pod:8080
+process → dependency → response</code></pre><div class="example-note">At each arrow record name, address, port, protocol, identity, timeout, and owner. That worksheet turns “the network is broken” into testable hypotheses.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Run dig for a domain and note TTL.</li><li>Inspect a TLS certificate and SANs.</li><li>List every hop to one local service.</li><li>Choose a command or signal that verifies each hop.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">Why can a DNS change appear inconsistent?</div><details><summary>Reveal answer</summary><p class="answer">Resolvers and clients cache records for their remaining TTLs, so different observers may temporarily use different answers.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://kubernetes.io/docs/concepts/" target="_blank" rel="noreferrer">Kubernetes concepts ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0001-platform-as-product.html"><small>Previous</small>Platform as a product</a><a href="0003-containers-kubernetes.html"><small>Next</small>Reconciliation and Kubernetes</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

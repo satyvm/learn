@@ -1,8 +1,13 @@
-# Resources
+# Resources: Modern TypeScript Monorepo
 
-- [Turborepo Docs](https://turbo.build/repo/docs) - Monorepo basics.
-- [TanStack Router Docs](https://tanstack.com/router/latest) - Type-safe routing.
-- [tRPC Docs](https://trpc.io/) - E2E type safety.
-- [Hono Docs](https://hono.dev/) - Web framework.
-- [Drizzle ORM Docs](https://orm.drizzle.team/) - DB schema/queries.
-- [Better-Auth](https://better-auth.com/) - Auth logic.
+Primary and high-trust sources used by this course.
+
+- [Turborepo handbook](https://turborepo.com/docs)
+- [tRPC documentation](https://trpc.io/docs)
+- [Hono documentation](https://hono.dev/docs/)
+- [Drizzle ORM documentation](https://orm.drizzle.team/docs/overview)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
+
+## How to use these
+
+Read the linked section after attempting the lesson’s retrieval question. Prefer the documentation version matching the tool you have installed, and verify evolving CLI flags with local `--help`.

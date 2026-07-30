@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Kubernetes platform lab · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="violet"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Platform Engineering / Kubernetes platform lab</div>
+</div></header>
+<main id="main" class="reference-shell"><div class="eyebrow">Specialist reference · print-friendly</div><h1>Kubernetes platform lab</h1><p class="deck">Build an internal platform as a product, from golden path to reliable operations.</p><h2>Lab contract</h2><p>Build a disposable local platform and keep an evidence journal. For every phase record the command or manifest, your prediction, observed state, one induced failure, diagnosis, repair, and cleanup proof.</p><div class="callout">Use a disposable cluster. Never run destructive drills against a shared or production context. Confirm <code>kubectl config current-context</code> before every phase.</div><h2>Seven phases</h2><table><tr><th>Phase</th><th>Build</th><th>Failure drill</th><th>Evidence</th></tr><tr><td>1 · Cluster</td><td>Local multi-node cluster, namespaces, RBAC</td><td>Denied service-account action</td><td>Nodes ready; least-privilege checks</td></tr><tr><td>2 · Workloads</td><td>Deployments, ConfigMaps, Secrets, scheduling, storage</td><td>Unschedulable Pod or missing claim</td><td>Events explain placement and binding</td></tr><tr><td>3 · Network</td><td>Services, ingress, DNS, default-deny policy</td><td>Wrong selector or blocked flow</td><td>Endpoints, DNS, and allowed paths verified</td></tr><tr><td>4 · Observe</td><td>Metrics, dashboards, SLI, alert rule</td><td>Latency or availability burn</td><td>Signal links symptom to workload</td></tr><tr><td>5 · Deliver</td><td>Argo CD application and environment declaration</td><td>Manual drift</td><td>Drift detected and reconciled</td></tr><tr><td>6 · Guard</td><td>Admission policy and certificate lifecycle</td><td>Unlabeled or floating-tag workload</td><td>Useful denial and auditable exception</td></tr><tr><td>7 · Recover</td><td>Troubleshooting game day</td><td>Crash loop, pull failure, DNS loss, bad policy</td><td>Hypothesis, signal, repair, and time-to-recovery</td></tr></table><h2>Diagnostic order</h2><pre><code>kubectl config current-context
+kubectl get &lt;resource&gt; -A -o wide
+kubectl describe &lt;resource&gt;
+kubectl get events --sort-by=.lastTimestamp
+kubectl logs &lt;pod&gt; --previous
+kubectl get endpointslices
+kubectl auth can-i &lt;verb&gt; &lt;resource&gt; --as=&lt;identity&gt;</code></pre><h2>Graduation evidence</h2><ol><li>Recreate the platform from versioned declarations.</li><li>Explain a request path from DNS through Service to a ready Pod.</li><li>Diagnose three injected failures without a runbook.</li><li>Restore desired state after drift.</li><li>Remove the cluster and verify no local or cloud resources remain.</li></ol>
+<h2>Continue learning</h2><p><a href="field-guide.html">Open the complete Platform Engineering field guide →</a></p>
+<p class="teacher-note">Use this page during practice, then close it and retrieve the structure from memory.</p></main></body></html>

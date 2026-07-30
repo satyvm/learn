@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Prove readiness and recovery · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="blue"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Ethereum Node Deployer / Lesson 8</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Ethereum Node Deployer</div><div class="rail-title">Create a layered verification plan with failure injection and cleanup checks.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>08 / 08</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:100%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 08 · Advanced</div><h1>Prove readiness and recovery</h1><p class="deck">Test policy, orchestration, infrastructure previews, and real health signals.</p><div class="objective"><strong>By the end</strong>Create a layered verification plan with failure injection and cleanup checks.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">No single test environment proves the whole system. Use fast pure tests for transitions, integration tests for boundaries, preview policy for infrastructure, and a small disposable canary for reality.</p><div class="concept-grid"><article class="concept"><h3>Test state transitions</h3><p>Generate or enumerate legal and illegal transitions, including duplicate events and worker restarts.</p></article><article class="concept"><h3>Inject boundary failures</h3><p>Timeout SSH, return partial output, fail a Compose pull, and crash after cloud creation to verify recovery.</p></article><article class="concept"><h3>Verify cleanup</h3><p>A passing create test that leaks volumes, IPs, snapshots, or stacks is operationally failing.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Test pyramid for systems</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>pure: transition + policy + redaction
+integration: DB + queue + mocked cloud/SSH
+preview: resource and security assertions
+canary: disposable AWS host + real clients
+recovery: kill worker at every durable boundary</code></pre><div class="example-note">Record cost ceiling, maximum duration, and cleanup evidence for the canary. Treat test infrastructure as production code.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Write five invariant tests.</li><li>Choose three failure-injection points.</li><li>Assert preview contains no world-open admin ports.</li><li>Run destroy and inventory leftovers.</li><li>Write the operator recovery checklist.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">What is the most dangerous untested path?</div><details><summary>Reveal answer</summary><p class="answer">A partial failure after resources exist but before state records success, because retries may duplicate resources and cleanup may miss them.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://www.pulumi.com/docs/iac/using-pulumi/automation-api/" target="_blank" rel="noreferrer">Pulumi Automation API ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0007-frontend-dashboard-and-admin.html"><small>Previous</small>Design for calm operations</a><a href="../../home.html"><small>Complete track</small>Return to curriculum</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

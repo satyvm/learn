@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Commits that evolve · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="rose"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Jujutsu VCS (`jj`) / Lesson 1</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Jujutsu VCS (`jj`)</div><div class="rail-title">Explain change ID, commit ID, @, and @- from a jj status display.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>01 / 08</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:13%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 01 · Git user → Productive</div><h1>Commits that evolve</h1><p class="deck">Replace staging-area thinking with a working-copy commit and stable change identity.</p><div class="objective"><strong>By the end</strong>Explain change ID, commit ID, @, and @- from a jj status display.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Your working copy is a real commit marked @. Editing files changes its commit ID automatically, while its change ID remains stable across rewrites. @- is its parent.</p><div class="concept-grid"><article class="concept"><h3>Snapshotting is automatic</h3><p>Most jj commands first snapshot tracked working-copy changes. There is usually no add/commit ceremony.</p></article><article class="concept"><h3>Change identity survives rewrite</h3><p>A description edit, squash, or rebase produces new commit content and therefore a new commit ID, but the logical change ID remains.</p></article><article class="concept"><h3>The graph is visible</h3><p>jj log shows working copy, parents, bookmarks, conflicts, and divergent changes in one DAG view.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Read status</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>Working copy  (@) : mzvwutvl 91c35e9a Add search
+Parent commit (@-): qpvuntsm a12f418e main | Add API
+                 ↑change ID ↑commit ID</code></pre><div class="example-note">Prefer change IDs when referring to evolving work. Commit IDs name exact immutable versions and remain useful for external Git interoperability.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Initialize a disposable repo.</li><li>Edit a file and run jj status.</li><li>Run jj describe, edit again, and observe which ID changes.</li><li>Draw @ and @-.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">Why are there two IDs?</div><details><summary>Reveal answer</summary><p class="answer">The commit ID identifies exact content and parents; the change ID follows the logical change as rewrites create new commit versions.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://docs.jj-vcs.dev/latest/tutorial/" target="_blank" rel="noreferrer">Jujutsu tutorial ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><span><small>Previous</small>Course index</span><a href="0002-setup-git-interoperability.html"><small>Next</small>Use jj with Git safely</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

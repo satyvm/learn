@@ -1,186 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 7: Wisdom & Next Steps</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0b0f19;
-      --card-bg: #151b2c;
-      --border-color: #232d45;
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --primary: #4f46e5;
-      --primary-hover: #6366f1;
-      --accent: #06b6d4;
-      --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-      --radius: 12px;
-      --shadow: 0 10px 30px -10px rgba(2, 3, 6, 0.7);
-    }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      line-height: 1.7;
-      padding: 2.5rem 1.5rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    header {
-      margin-bottom: 3rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 2rem;
-    }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
-      letter-spacing: -0.025em;
-    }
-    .subtitle {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-      font-weight: 400;
-    }
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      color: #ffffff;
-      border-left: 4px solid var(--accent);
-      padding-left: 12px;
-    }
-    p {
-      margin-bottom: 1.25rem;
-      color: var(--text-muted);
-      font-size: 1.05rem;
-    }
-    strong {
-      color: #ffffff;
-      font-weight: 600;
-    }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s ease;
-    }
-    a:hover {
-      color: var(--primary-hover);
-      text-decoration: underline;
-    }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: var(--shadow);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: #313f5e;
-    }
-    ul, ol {
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-      color: var(--text-muted);
-    }
-    li {
-      margin-bottom: 0.5rem;
-    }
-    code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9em;
-      background: #1e2538;
-      padding: 0.2rem 0.4rem;
-      border-radius: 6px;
-      color: #e2e8f0;
-      border: 1px solid #2d3750;
-    }
-    .badge {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      border-radius: 50px;
-      background: var(--accent-gradient);
-      color: #ffffff;
-      margin-bottom: 1rem;
-    }
-    .nav-links {
-      display: flex;
-      justify-content: flex-start;
-      margin-top: 3rem;
-      border-top: 1px solid var(--border-color);
-      padding-top: 2rem;
-    }
-    .nav-btn {
-      padding: 0.75rem 1.5rem;
-      border-radius: var(--radius);
-      font-weight: 600;
-      transition: all 0.2s ease;
-      text-decoration: none;
-      background: transparent;
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-    }
-    .nav-btn:hover {
-      background: #1a2236;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="badge">Lesson 7</div>
-    <h1>Wisdom &amp; Next Steps</h1>
-    <div class="subtitle">Complete your learning roadmap and connect with communities.</div>
-  </header>
-
-  <div class="card">
-    <p>Correct! The schema validation library is <strong>Zod</strong>. tRPC uses Zod to validate input payloads at the API layer, giving you compile-time type safety automatically.</p>
-  </div>
-
-  <div class="card">
-    <h2>Mission Complete!</h2>
-    <p>Congratulations, you have completed the core learning goals for the Modern TypeScript Monorepo track! Let's summarize the milestones you've cleared:</p>
-    <ul>
-      <li><strong>Monorepo Layout:</strong> Understood the configuration design that splits apps and shared logic packages.</li>
-      <li><strong>Data Pipeline:</strong> Traversed data flows from PostgreSQL tables via Drizzle, through tRPC API routes, up to frontend React and Expo clients.</li>
-      <li><strong>Tooling System:</strong> Mastered the build optimizations provided by Turborepo, Bun, Biome, and Tailwind CSS.</li>
-      <li><strong>Scaffolding Workflow:</strong> Learned how to instantly build the codebase skeleton using create-t3-turbo.</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>Diving Into the Community</h2>
-    <p>Real-world experience is the best teacher. When you build complex features, you'll run into unique edge cases. Join these Discord servers and developer resources to get feedback from other practitioners:</p>
-    <ul>
-      <li><a href="https://discord.gg/t3-oss" target="_blank">T3 Tools Discord Server</a></li>
-      <li><a href="https://discord.gg/drizzle" target="_blank">Drizzle ORM Discord Server</a></li>
-      <li><a href="https://twitter.com/t3dotgg" target="_blank">Theo Browne on X / YouTube</a> (Creator of the T3 stack)</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>What's next?</h2>
-    <p>If you want to continue exploring, feel free to notify your agent to start another topic (e.g., deep diving into Drizzle migrations, configuring Better-Auth providers, or optimizing EAS mobile builds). Otherwise, you can ask to start building application features directly in code!</p>
-  </div>
-
-  <div class="nav-links">
-    <a href="0006-adding-feature.html" class="nav-btn">← Back</a>
-  </div>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Operate the architecture · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="sage"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Modern TypeScript Monorepo / Lesson 7</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Modern TypeScript Monorepo</div><div class="rail-title">Use evidence to decide what to share, split, cache, or simplify.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>07 / 07</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:100%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 07 · Intermediate</div><h1>Operate the architecture</h1><p class="deck">Evaluate the monorepo by change cost, not diagram beauty.</p><div class="objective"><strong>By the end</strong>Use evidence to decide what to share, split, cache, or simplify.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Architecture is a set of bets. Review those bets with lead time, failure patterns, task duration, ownership friction, and the clarity of common changes.</p><div class="concept-grid"><article class="concept"><h3>Share stable meaning</h3><p>Share a module when consumers need the same concept and coordinated changes are desirable. Coincidental similar code may be cheaper to duplicate.</p></article><article class="concept"><h3>Cache deterministic work</h3><p>A task is safely cacheable only when declared inputs capture everything that can affect its output.</p></article><article class="concept"><h3>Graduation means transfer</h3><p>You understand the system when you can predict a new feature’s path, diagnose a broken boundary, and explain tradeoffs to another developer.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Architecture review</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>Evidence → hypothesis → small change → measurement
+“CI is slow” → “tests ignore package boundaries”
+→ add affected-task selection → compare duration and misses</code></pre><div class="example-note">Treat tool changes as experiments. A new orchestrator or package boundary is useful only if it improves a named constraint.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Draw the current dependency graph from memory.</li><li>Choose one recent feature and annotate friction.</li><li>Propose one reversible improvement and a measurement.</li><li>Teach the slice workflow aloud in five minutes.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">When is duplication preferable to a shared package?</div><details><summary>Reveal answer</summary><p class="answer">When similarity is accidental, ownership differs, or consumers are likely to evolve independently and coordination would cost more than repetition.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://turborepo.com/docs" target="_blank" rel="noreferrer">Turborepo handbook ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0006-adding-feature.html"><small>Previous</small>Build a vertical slice</a><a href="../../home.html"><small>Complete track</small>Return to curriculum</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

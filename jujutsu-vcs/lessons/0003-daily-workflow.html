@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Describe, edit, and start the next change · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="rose"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Jujutsu VCS (`jj`) / Lesson 3</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Jujutsu VCS (`jj`)</div><div class="rail-title">Create a stack of three described changes and amend an earlier one.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>03 / 08</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:38%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 03 · Git user → Productive</div><h1>Describe, edit, and start the next change</h1><p class="deck">Use a low-ceremony loop that keeps work reviewable.</p><div class="objective"><strong>By the end</strong>Create a stack of three described changes and amend an earlier one.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">A common loop is describe the current change, edit files, inspect diff, then jj new to begin another. To repair an earlier change, edit it directly or make a child fix and squash.</p><div class="concept-grid"><article class="concept"><h3>Describe early</h3><p>A provisional description records intent before context fades. Rewrite it as understanding improves.</p></article><article class="concept"><h3>New means next change</h3><p>jj new creates a new empty working-copy commit on the chosen parent; it does not publish or branch.</p></article><article class="concept"><h3>Squash moves content</h3><p>With a new working copy on top of a target, a small fix can be reviewed in isolation and then squashed into its parent.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Daily loop</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>jj describe -m "Add project schema"
+# edit files
+jj diff
+jj new -m "Expose project query"
+# edit files
+jj new -m "Render project list"
+
+# tiny fix for parent
+# edit, inspect
+jj squash</code></pre><div class="example-note">jj edit &lt;change&gt; is useful for direct continued editing; a new child plus squash makes the incremental fix visible before folding it in.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Create three small dependent changes.</li><li>Use jj show on each.</li><li>Edit the middle change and observe descendant rebasing.</li><li>Use jj undo and inspect recovery.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">What does jj new do?</div><details><summary>Reveal answer</summary><p class="answer">It creates a new empty working-copy commit on the selected parent, beginning a separate logical change.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://docs.jj-vcs.dev/latest/tutorial/" target="_blank" rel="noreferrer">Jujutsu tutorial ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0002-setup-git-interoperability.html"><small>Previous</small>Use jj with Git safely</a><a href="0004-revsets-log.html"><small>Next</small>Query the commit graph</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

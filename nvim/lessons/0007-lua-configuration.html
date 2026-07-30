@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Build a small Lua configuration · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="green"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Neovim / Lesson 7</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Neovim</div><div class="rail-title">Create a modular init.lua with options, mappings, autocmds, and lazy-loaded plugins.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>07 / 08</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:88%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 07 · Beginner → Productive</div><h1>Build a small Lua configuration</h1><p class="deck">Organize settings by behavior and debug them with native tools.</p><div class="objective"><strong>By the end</strong>Create a modular init.lua with options, mappings, autocmds, and lazy-loaded plugins.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Neovim loads init.lua from its config path. Lua modules under lua/ are found by require. Native vim.opt, vim.keymap.set, and nvim_create_autocmd cover most configuration.</p><div class="concept-grid"><article class="concept"><h3>Describe every mapping</h3><p>A desc appears in help and discovery tools. Avoid remapping core behavior without a concrete reason.</p></article><article class="concept"><h3>Autocommands need groups</h3><p>Create an augroup with clear=true so re-sourcing does not duplicate behavior.</p></article><article class="concept"><h3>Plugins pay rent</h3><p>Add a plugin for a named capability, read its setup contract, pin or lock versions, and know how to disable it during diagnosis.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Minimal structure</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>init.lua
+lua/config/options.lua
+lua/config/keymaps.lua
+lua/config/autocmds.lua
+lua/plugins/*.lua
+
+-- init.lua
+require("config.options")
+require("config.keymaps")
+require("config.autocmds")</code></pre><div class="example-note">Keep startup understandable. Use :scriptnames, :messages, :checkhealth, and :verbose map to trace where behavior came from.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Find stdpath('config').</li><li>Split options, mappings, and autocmds.</li><li>Add one described mapping.</li><li>Create one idempotent augroup.</li><li>Measure startup before and after one plugin.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">Why use an augroup with clear=true?</div><details><summary>Reveal answer</summary><p class="answer">It prevents duplicate autocmds when configuration is sourced again, making reload behavior idempotent.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://neovim.io/doc/user/lua-guide.html" target="_blank" rel="noreferrer">Neovim Lua guide ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0006-lsp-diagnostics-treesitter.html"><small>Previous</small>Language intelligence without mystery</a><a href="0008-capstone-editing-kata.html"><small>Next</small>Capstone: a real editing session</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

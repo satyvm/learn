@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Persist intent and enforce tenancy · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="blue"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Ethereum Node Deployer / Lesson 2</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Ethereum Node Deployer</div><div class="rail-title">Design database constraints and authorization checks that prevent cross-tenant access.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>02 / 08</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:25%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 02 · Advanced</div><h1>Persist intent and enforce tenancy</h1><p class="deck">Model deployments, attempts, logs, approvals, and ownership.</p><div class="objective"><strong>By the end</strong>Design database constraints and authorization checks that prevent cross-tenant access.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Authentication identifies an actor. Authorization evaluates whether that actor may perform this operation on this resource. Put ownership predicates beside reads and writes, not only in UI guards.</p><div class="concept-grid"><article class="concept"><h3>Separate deployment from attempt</h3><p>One user-visible deployment can have multiple provisioning attempts. This preserves history without overwriting failure evidence.</p></article><article class="concept"><h3>Logs are ordered evidence</h3><p>Use monotonic sequence numbers or time plus unique ID for cursor pagination. Do not rely on array position.</p></article><article class="concept"><h3>Approval is a state machine</h3><p>Pending, approved, rejected, and suspended carry different transitions and audit requirements.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Ownership query</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>const deployment = await db.query.deployments.findFirst({
+  where: and(eq(id, input.id), eq(ownerId, ctx.user.id)),
+});
+if (!deployment) throw new TRPCError({ code: "NOT_FOUND" });</code></pre><div class="example-note">Returning not found for an inaccessible tenant resource avoids confirming that another user’s ID exists. Admin procedures should use a separately audited capability.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Define deployment and attempt tables.</li><li>Add unique, foreign-key, and status constraints.</li><li>Write user and admin access matrices.</li><li>Test an ID belonging to a different tenant.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">Why keep attempts separate from deployments?</div><details><summary>Reveal answer</summary><p class="answer">Retries are operational events with their own provider IDs, logs, and failures; preserving them supports audit, diagnosis, and safe recovery.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html" target="_blank" rel="noreferrer">AWS Well-Architected Framework ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0001-architecture-overview.html"><small>Previous</small>Control plane to data plane</a><a href="0003-pulumi-automation-api.html"><small>Next</small>Provision with a durable program</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

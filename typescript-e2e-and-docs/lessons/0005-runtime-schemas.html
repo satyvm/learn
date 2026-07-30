@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Validate at every trust boundary · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="copper"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / TypeScript: Errors to End-to-End / Lesson 5</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">TypeScript: Errors to End-to-End</div><div class="rail-title">Design a schema that transforms untrusted request data into a useful domain input.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>05 / 06</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:83%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 05 · Intermediate</div><h1>Validate at every trust boundary</h1><p class="deck">Connect runtime schemas to precise internal types.</p><div class="objective"><strong>By the end</strong>Design a schema that transforms untrusted request data into a useful domain input.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Parsing is a phase change: unknown external representation becomes either structured errors or trusted internal data. Keep coercion and defaults at this edge.</p><div class="concept-grid"><article class="concept"><h3>Parse, do not merely check</h3><p>A good boundary may trim text, normalize dates, reject excess, and return a value shaped for the next layer.</p></article><article class="concept"><h3>Separate transport from domain</h3><p>HTTP strings and database rows are representations. Map them to domain concepts instead of exporting storage shapes everywhere.</p></article><article class="concept"><h3>Errors need paths</h3><p>Structured issues let clients attach feedback to fields and let logs aggregate failure categories.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Schema-first input</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>const CreateProject = z.object({
+  name: z.string().trim().min(3).max(80),
+  visibility: z.enum(["private", "team"]),
+}).strict();
+type CreateProject = z.infer&lt;typeof CreateProject&gt;;</code></pre><div class="example-note">The same declaration executes at runtime and supplies a static type. strict prevents silently accepting misspelled fields.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Write the raw boundary as unknown.</li><li>Define normalization and constraints.</li><li>Parse with success and failure examples.</li><li>Map issues into stable client error codes.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">Where should string trimming happen?</div><details><summary>Reveal answer</summary><p class="answer">At the parsing boundary, so every downstream consumer receives one normalized representation.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://zod.dev/" target="_blank" rel="noreferrer">Zod documentation ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0004-domain-modeling.html"><small>Previous</small>Make invalid states difficult</a><a href="0006-e2e-contract.html"><small>Next</small>Prove an end-to-end contract</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

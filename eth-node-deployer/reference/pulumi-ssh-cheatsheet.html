@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Pulumi and SSH operations · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="blue"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Ethereum Node Deployer / Pulumi and SSH operations</div>
+</div></header>
+<main id="main" class="reference-shell"><div class="eyebrow">Specialist reference · print-friendly</div><h1>Pulumi and SSH operations</h1><p class="deck">A secure self-service control plane from API request to healthy node.</p><h2>Pulumi operation contract</h2><pre><code>stable deployment ID → stable stack name
+serialize per stack → select existing state
+preview → policy review → update
+persist typed outputs → begin host configuration
+on retry: inspect prior attempt before creating effects</code></pre><h2>Remote step contract</h2><table><tr><th>Field</th><th>Question</th></tr><tr><td>Precondition</td><td>What must already be true?</td></tr><tr><td>Check</td><td>How do we know the desired state already exists?</td></tr><tr><td>Apply</td><td>What is the smallest state-changing command?</td></tr><tr><td>Verify</td><td>What observable postcondition proves success?</td></tr><tr><td>Timeout</td><td>When do we stop waiting?</td></tr><tr><td>Retry</td><td>Which failures are transient, and with what backoff?</td></tr><tr><td>Evidence</td><td>What redacted result is persisted?</td></tr></table><div class="callout">Never format a disk by device-name guess. Resolve a stable device identity, probe filesystem state, and require an explicit destructive precondition.</div>
+<h2>Continue learning</h2><p><a href="field-guide.html">Open the complete Ethereum Node Deployer field guide →</a></p>
+<p class="teacher-note">Use this page during practice, then close it and retrieve the structure from memory.</p></main></body></html>

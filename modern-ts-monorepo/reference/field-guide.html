@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Modern TypeScript Monorepo field guide · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="sage"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Modern TypeScript Monorepo / Field guide</div>
+</div></header>
+<main id="main" class="reference-shell"><div class="eyebrow">Quick reference · print-friendly</div><h1>Modern TypeScript Monorepo field guide</h1><p class="deck">Type-safe systems across web, mobile, server, and shared packages.</p><h2>Dependency direction</h2><pre><code>apps/* → packages/api → packages/db
+                 ↘ packages/auth
+apps/* → packages/ui
+No package imports an app. No circular package edges.</code></pre><h2>Vertical slice checklist</h2><table><tr><th>Layer</th><th>Owns</th><th>Proof</th></tr><tr><td>Database</td><td>Persistence constraints and queries</td><td>Migration + repository test</td></tr><tr><td>API</td><td>Validation, authorization, public result</td><td>Boundary tests</td></tr><tr><td>Client</td><td>Interaction and visible states</td><td>Behavior test</td></tr></table><div class="callout">Share public contracts, not accidental implementation shapes. Keep task inputs explicit so caches remain sound.</div>
+<h2>Course path</h2><ol><li><a href="../lessons/0001-monorepo-intro.html">One repository, many products</a></li><li><a href="../lessons/0002-trpc-api.html">The API as a typed boundary</a></li><li><a href="../lessons/0003-server-and-client.html">Server and client responsibilities</a></li><li><a href="../lessons/0004-init-project.html">Initialize with constraints</a></li><li><a href="../lessons/0005-scaffold-first-run.html">Make the first run observable</a></li><li><a href="../lessons/0006-adding-feature.html">Build a vertical slice</a></li><li><a href="../lessons/0007-wisdom-and-graduation.html">Operate the architecture</a></li></ol>
+<p class="teacher-note">Compress this reference further as your fluency grows. Add personal failure signatures and commands only after you understand them.</p></main></body></html>

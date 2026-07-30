@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Neovim field guide · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="green"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Neovim / Field guide</div>
+</div></header>
+<main id="main" class="reference-shell"><div class="eyebrow">Quick reference · print-friendly</div><h1>Neovim field guide</h1><p class="deck">Learn modal editing as a language, then build a small maintainable editor.</p><h2>The editing grammar</h2><table><tr><th>Role</th><th>Examples</th><th>Meaning</th></tr><tr><td>Operator</td><td>d c y</td><td>delete, change, yank</td></tr><tr><td>Motion</td><td>w $ f, /text</td><td>range by movement</td></tr><tr><td>Text object</td><td>iw a" i(</td><td>semantic range</td></tr><tr><td>Count</td><td>3w 2dd</td><td>repeat motion or operator</td></tr></table><h2>Native diagnosis</h2><pre><code>:help topic
+:checkhealth
+:messages
+:scriptnames
+:verbose map &lt;key&gt;
+:set option?
+:LspInfo
+:lua =expression</code></pre><h2>Automation ladder</h2><p>One repeated change: dot. Repeated search targets: n plus dot. Repeated structured rows: macro. Pattern transformation: substitute or :normal. Semantic project rename: LSP.</p>
+<h2>Course path</h2><ol><li><a href="../lessons/0001-modal-grammar.html">Modal editing is a language</a></li><li><a href="../lessons/0002-motions-text-objects.html">Move by meaning</a></li><li><a href="../lessons/0003-repeat-registers-macros.html">Edit once, repeat safely</a></li><li><a href="../lessons/0004-search-substitute-quickfix.html">Search becomes a work queue</a></li><li><a href="../lessons/0005-buffers-windows-tabs.html">Separate files, views, and layouts</a></li><li><a href="../lessons/0006-lsp-diagnostics-treesitter.html">Language intelligence without mystery</a></li><li><a href="../lessons/0007-lua-configuration.html">Build a small Lua configuration</a></li><li><a href="../lessons/0008-capstone-editing-kata.html">Capstone: a real editing session</a></li></ol>
+<p class="teacher-note">Compress this reference further as your fluency grows. Add personal failure signatures and commands only after you understand them.</p></main></body></html>

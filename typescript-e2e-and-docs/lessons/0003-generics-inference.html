@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Read generic relationships · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="copper"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / TypeScript: Errors to End-to-End / Lesson 3</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">TypeScript: Errors to End-to-End</div><div class="rail-title">Explain what a type parameter connects and when inference can determine it.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>03 / 06</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:50%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 03 · Intermediate</div><h1>Read generic relationships</h1><p class="deck">Understand generics as relationships between positions, not decorative angle brackets.</p><div class="objective"><strong>By the end</strong>Explain what a type parameter connects and when inference can determine it.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">A useful generic preserves a relationship: input to output, key to object, element to collection. If a type parameter occurs only once, it may be unnecessary.</p><div class="concept-grid"><article class="concept"><h3>Find occurrences</h3><p>Trace each type parameter through parameters, constraints, callbacks, and return types. Its repeated positions state the promise.</p></article><article class="concept"><h3>Constraints grant capability</h3><p>T extends { id: string } allows the implementation to read id while preserving the caller’s more specific shape.</p></article><article class="concept"><h3>Inference flows from evidence</h3><p>Arguments usually infer type parameters. Return-only generic parameters often force callers to specify or invite unsafe claims.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>A relational helper</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>function pluck&lt;T, K extends keyof T&gt;(items: T[], key: K): T[K][] {
+  return items.map(item =&gt; item[key]);
+}
+const names = pluck(users, "name"); // inferred string[]</code></pre><div class="example-note">K must be a key of T, and the output is the value type at that key. Three positions express one checkable relationship.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Circle every occurrence of T and K.</li><li>Say the relationship in one sentence.</li><li>Call the function with a valid and invalid key.</li><li>Remove explicit type arguments and observe inference.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">Why is function parse&lt;T&gt;(text: string): T suspicious?</div><details><summary>Reveal answer</summary><p class="answer">Nothing in the input proves T, so the function can promise any caller-requested type without runtime evidence.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://www.typescriptlang.org/docs/handbook/2/generics.html" target="_blank" rel="noreferrer">TypeScript generics ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0002-narrowing-unknown.html"><small>Previous</small>Narrow what you do not know</a><a href="0004-domain-modeling.html"><small>Next</small>Make invalid states difficult</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

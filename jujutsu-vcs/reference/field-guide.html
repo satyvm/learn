@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Jujutsu VCS (`jj`) field guide · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="rose"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Jujutsu VCS (`jj`) / Field guide</div>
+</div></header>
+<main id="main" class="reference-shell"><div class="eyebrow">Quick reference · print-friendly</div><h1>Jujutsu VCS (`jj`) field guide</h1><p class="deck">A safer change-centric workflow on top of Git repositories.</p><h2>Identity map</h2><table><tr><th>Symbol</th><th>Meaning</th></tr><tr><td>@</td><td>Working-copy commit</td></tr><tr><td>@-</td><td>Parent of working copy</td></tr><tr><td>Change ID</td><td>Stable identity across rewrites</td></tr><tr><td>Commit ID</td><td>Exact immutable commit version</td></tr><tr><td>main@origin</td><td>Remote-tracking bookmark</td></tr></table><h2>Daily loop</h2><pre><code>jj status → jj describe → edit → jj diff → jj new
+repair: jj edit OR child fix + jj squash
+inspect: jj log / jj show / jj diff
+recover: jj op log / jj undo / jj op restore</code></pre><h2>Revset starters</h2><pre><code>trunk()..@        open work relative to trunk
+trunk()::@        paths from trunk through working copy
+mine() & mutable() your rewritable work
+conflicts()       commits containing conflicts</code></pre>
+<h2>Course path</h2><ol><li><a href="../lessons/0001-change-centric-model.html">Commits that evolve</a></li><li><a href="../lessons/0002-setup-git-interoperability.html">Use jj with Git safely</a></li><li><a href="../lessons/0003-daily-workflow.html">Describe, edit, and start the next change</a></li><li><a href="../lessons/0004-revsets-log.html">Query the commit graph</a></li><li><a href="../lessons/0005-rewrite-stacks.html">Rewrite without ceremony</a></li><li><a href="../lessons/0006-bookmarks-remotes-github.html">Publish through Git bookmarks</a></li><li><a href="../lessons/0007-first-class-conflicts.html">Conflicts can be committed</a></li><li><a href="../lessons/0008-operation-log-capstone.html">Recover, then trust yourself</a></li></ol>
+<p class="teacher-note">Compress this reference further as your fluency grows. Add personal failure signatures and commands only after you understand them.</p></main></body></html>

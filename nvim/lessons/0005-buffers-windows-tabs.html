@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Separate files, views, and layouts · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="green"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Neovim / Lesson 5</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Neovim</div><div class="rail-title">Explain buffers, windows, tab pages, and argument lists.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>05 / 08</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:63%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 05 · Beginner → Productive</div><h1>Separate files, views, and layouts</h1><p class="deck">Avoid treating every visible region as a browser tab.</p><div class="objective"><strong>By the end</strong>Explain buffers, windows, tab pages, and argument lists.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">A buffer is loaded text, a window is a view onto a buffer, and a tab page is a window layout. Closing a window need not delete its buffer.</p><div class="concept-grid"><article class="concept"><h3>Buffers are the working set</h3><p>:buffer and :bnext switch loaded files. Hidden buffers can retain unsaved changes depending on settings.</p></article><article class="concept"><h3>Windows are views</h3><p>Splits can show the same buffer at different positions or different buffers. Window-local options belong to the view.</p></article><article class="concept"><h3>Tab pages are layouts</h3><p>Use them for distinct arrangements, not automatically one file per tab. The argument list can represent a planned file set.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Mental map</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>tab page 1: [window A → buffer app.ts] [window B → buffer test.ts]
+tab page 2: [window C → buffer app.ts]
+buffer app.ts is one text object with two views</code></pre><div class="example-note">Edits in either view of app.ts are immediately shared because both windows display the same buffer.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Open three buffers and list them.</li><li>Show one buffer in two splits.</li><li>Create a tab with a different layout.</li><li>Use Ctrl-w navigation and resize commands.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">If you close a window, is its buffer necessarily deleted?</div><details><summary>Reveal answer</summary><p class="answer">No. A window is only a view; the buffer may remain loaded or hidden and can be shown again.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://neovim.io/doc/user/" target="_blank" rel="noreferrer">Neovim user manual ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0004-search-substitute-quickfix.html"><small>Previous</small>Search becomes a work queue</a><a href="0006-lsp-diagnostics-treesitter.html"><small>Next</small>Language intelligence without mystery</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

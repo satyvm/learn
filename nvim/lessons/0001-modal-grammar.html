@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Modal editing is a language · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="green"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Neovim / Lesson 1</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Neovim</div><div class="rail-title">Use Normal, Insert, Visual, and Command-line modes intentionally.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>01 / 08</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:13%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 01 · Beginner → Productive</div><h1>Modal editing is a language</h1><p class="deck">Stop memorizing tricks; compose verbs with targets.</p><div class="objective"><strong>By the end</strong>Use Normal, Insert, Visual, and Command-line modes intentionally.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">Normal mode is a command language. Operators state an action, motions or text objects state a range, and counts repeat. Escape returns you to the grammar.</p><div class="concept-grid"><article class="concept"><h3>Modes change meaning</h3><p>Use Insert for text entry, Normal for structure, Visual for an explicit selection, and Command-line for Ex commands and search.</p></article><article class="concept"><h3>Operator plus motion</h3><p>d deletes, c changes, y yanks; w, $, }, and searches provide ranges. dw and c$ are compositional sentences.</p></article><article class="concept"><h3>Prefer intent-sized commands</h3><p>A structured command is repeatable with dot and leaves useful history. Random movement plus backspace is harder to repeat.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Read commands aloud</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>ciw  = change inside word
+da(  = delete around parentheses
+y2j  = yank this line and two lines downward
+3w   = move three word starts
+.    = repeat the last change</code></pre><div class="example-note">The same objects work with different operators. Learn the grammar’s small vocabulary, then combine it.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Run :Tutor and finish the opening sections.</li><li>Change five words with ciw.</li><li>Delete inside quotes and around quotes; observe the difference.</li><li>Return to Normal mode after every insertion.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">What does d2w express?</div><details><summary>Reveal answer</summary><p class="answer">Delete over a motion of two words: operator d applied to count 2 and motion w.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://neovim.io/doc/user/" target="_blank" rel="noreferrer">Neovim user manual ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><span><small>Previous</small>Course index</span><a href="0002-motions-text-objects.html"><small>Next</small>Move by meaning</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

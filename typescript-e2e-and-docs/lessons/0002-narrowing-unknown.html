@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Narrow what you do not know · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="copper"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / TypeScript: Errors to End-to-End / Lesson 2</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">TypeScript: Errors to End-to-End</div><div class="rail-title">Safely extract a value from unknown input without using any or as.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>02 / 06</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:33%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 02 · Intermediate</div><h1>Narrow what you do not know</h1><p class="deck">Replace trust-by-assertion with executable evidence.</p><div class="objective"><strong>By the end</strong>Safely extract a value from unknown input without using any or as.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">unknown says “a value exists, but I have not proved what it is.” Control-flow checks accumulate evidence until an operation becomes legal.</p><div class="concept-grid"><article class="concept"><h3>Guards create evidence</h3><p>typeof, Array.isArray, property checks, discriminants, and user-defined predicates narrow values along reachable branches.</p></article><article class="concept"><h3>Assertions skip the proof</h3><p>as changes the checker’s belief without changing runtime data. Use it only at a boundary whose invariant is established elsewhere.</p></article><article class="concept"><h3>Exhaustiveness protects growth</h3><p>A never check turns a newly added union member into a compile error at every incomplete switch.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>A safe boundary</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>function messageOf(value: unknown): string {
+  if (typeof value === "object" &amp;&amp; value !== null &amp;&amp;
+      "message" in value &amp;&amp; typeof value.message === "string") {
+    return value.message;
+  }
+  return "Unknown failure";
+}</code></pre><div class="example-note">Each condition earns one capability. The function works for Error objects, structured responses, primitives, and null without lying to the compiler.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Start with an unknown caught error.</li><li>Narrow null and object shape.</li><li>Extract only a proven string.</li><li>Add tests for a primitive, null, Error, and object.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">What does unknown permit before narrowing?</div><details><summary>Reveal answer</summary><p class="answer">Only operations valid for every possible value; narrowing is required before property access, calls, or arithmetic.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://www.typescriptlang.org/docs/handbook/2/narrowing.html" target="_blank" rel="noreferrer">TypeScript narrowing ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0001-reading-docs-and-errors.html"><small>Previous</small>Read errors as a path</a><a href="0003-generics-inference.html"><small>Next</small>Read generic relationships</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

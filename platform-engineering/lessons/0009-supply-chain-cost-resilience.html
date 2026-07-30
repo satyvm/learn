@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Supply chain, cost, and resilience · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="violet"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Platform Engineering / Lesson 9</div>
+</div></header>
+<div class="lesson-shell">
+<aside class="margin-rail" aria-label="Lesson information">
+  <div><div class="rail-label">Platform Engineering</div><div class="rail-title">Threat-model the artifact path and design cost/resilience guardrails.</div></div>
+  <div class="rail-meta"><div><span>Lesson</span>09 / 10</div><div><span>Study time</span>25 min</div></div>
+  <div class="rail-progress"><i style="width:90%"></i></div>
+</aside>
+<main id="main">
+  <header class="hero"><div class="eyebrow">Lesson 09 · Foundations → Advanced</div><h1>Supply chain, cost, and resilience</h1><p class="deck">Treat trust, spend, and failure as product constraints.</p><div class="objective"><strong>By the end</strong>Threat-model the artifact path and design cost/resilience guardrails.</div></header>
+  <section class="section"><div class="section-number">01 / Mental model</div><h2>Build the right picture first</h2><p class="lede">A platform makes expensive, privileged actions easy, so it must also make provenance, budgets, quotas, backups, and recovery visible. Guardrails belong in the self-service contract.</p><div class="concept-grid"><article class="concept"><h3>Provenance supports verification</h3><p>Link source, builder identity, dependencies, artifact digest, signature, and deployment. Verification should happen before privileged execution.</p></article><article class="concept"><h3>Cost has an owner</h3><p>Tags, budgets, quotas, expiry, and showback help teams connect requests to consequences without ticket gates.</p></article><article class="concept"><h3>Recovery needs rehearsal</h3><p>Backups without restore tests are hypotheses. Define RTO/RPO, dependencies, degraded modes, and game days.</p></article></div></section>
+  <section class="section"><div class="section-number">02 / Worked example</div><h2>Three-axis review</h2><div class="example"><div class="example-head"><span>ANNOTATED EXAMPLE</span><span>read → predict → explain</span></div><pre><code>Change: create preview environment
+Trust: verified image + approved module
+Cost: quota + TTL + owner label
+Resilience: regional dependency + cleanup retry + state backup</code></pre><div class="example-note">Evaluate capabilities across all three axes during design review; retrofitting them after adoption creates painful migrations.</div></div></section>
+  <section class="section"><div class="section-number">03 / Deliberate practice</div><h2>Do the work</h2><p>Predict the result before each step. Keep a small note of what surprised you; surprise is useful evidence that your mental model changed.</p><ol class="practice"><li>Draw the source-to-runtime trust chain.</li><li>Add quota and automatic expiry to a capability.</li><li>Choose RTO/RPO for platform state.</li><li>Run a tabletop loss-of-control-plane scenario.</li></ol></section>
+  <section class="section"><div class="section-number">04 / Retrieval</div><h2>Close the notes</h2><div class="check"><div class="question">What makes a backup trustworthy?</div><details><summary>Reveal answer</summary><p class="answer">A verified restore that meets a defined recovery point and recovery time under realistic dependencies.</p></details></div></section>
+  <section class="section"><div class="section-number">05 / Primary source</div><h2>Read from the authority</h2><div class="source"><span>Required reading</span><a href="https://slsa.dev/spec/" target="_blank" rel="noreferrer">SLSA specification ↗</a></div></section>
+  <nav class="lesson-nav" aria-label="Lesson navigation"><a href="0008-identity-policy-secrets.html"><small>Previous</small>Identity, policy, and secrets</a><a href="0010-capstone-platform-blueprint.html"><small>Next</small>Capstone: the Atlas platform blueprint</a></nav>
+  <p class="teacher-note">Questions are part of the lesson. Ask your teaching agent to challenge your answer, inspect your attempt, or explain any step from another angle.</p>
+</main></div><script src="../../assets/lesson.js"></script></body></html>

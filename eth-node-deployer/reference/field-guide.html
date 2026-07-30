@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Ethereum Node Deployer field guide · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="blue"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Ethereum Node Deployer / Field guide</div>
+</div></header>
+<main id="main" class="reference-shell"><div class="eyebrow">Quick reference · print-friendly</div><h1>Ethereum Node Deployer field guide</h1><p class="deck">A secure self-service control plane from API request to healthy node.</p><h2>Lifecycle</h2><pre><code>requested → provisioning → configuring → starting → verifying → ready
+                         ↘ failed(stage, reason, retryable)
+ready → deleting → deleted</code></pre><h2>Boundary evidence</h2><table><tr><th>Boundary</th><th>Success evidence</th><th>Durable identity</th></tr><tr><td>API → worker</td><td>Queued operation</td><td>operation ID</td></tr><tr><td>Worker → Pulumi</td><td>Typed stack outputs</td><td>stack name</td></tr><tr><td>Worker → SSH</td><td>Verified step postconditions</td><td>attempt + step</td></tr><tr><td>Host → Compose</td><td>Semantic health probes</td><td>deployment ID</td></tr></table><h2>Port posture</h2><p>Publish only authenticated user endpoints. Keep the Engine API, metrics, container administration, and host administration private. Treat every world-open rule as a reviewed exception.</p>
+<h2>Course path</h2><ol><li><a href="../lessons/0001-architecture-overview.html">Control plane to data plane</a></li><li><a href="../lessons/0002-database-and-auth.html">Persist intent and enforce tenancy</a></li><li><a href="../lessons/0003-pulumi-automation-api.html">Provision with a durable program</a></li><li><a href="../lessons/0004-ssh-provisioning-orchestrator.html">Make remote configuration idempotent</a></li><li><a href="../lessons/0005-docker-compose-stack.html">Compose the Ethereum runtime</a></li><li><a href="../lessons/0006-trpc-api-routes.html">Expose safe asynchronous operations</a></li><li><a href="../lessons/0007-frontend-dashboard-and-admin.html">Design for calm operations</a></li><li><a href="../lessons/0008-testing-and-validation.html">Prove readiness and recovery</a></li></ol>
+<p class="teacher-note">Compress this reference further as your fluency grows. Add personal failure signatures and commands only after you understand them.</p></main></body></html>

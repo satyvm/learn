@@ -1,4 +1,7 @@
-# Notes
+# Teaching notes: Modern TypeScript Monorepo
 
-- **Caveman Mode Deactivated:** The user requested standard, clear developer communication.
-- Focus heavily on architectural mapping, monorepo structures, and feature implementation workflow.
+- Prefer architectural maps before code.
+- Use one vertical slice to connect database, API, and UI.
+- Treat type safety as feedback, not as proof of runtime correctness.
+- Use dark mode and the shared academic design system in `../assets/`.
+- Revisit earlier material through spaced retrieval and interleaved practice.

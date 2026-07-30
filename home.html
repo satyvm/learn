@@ -1,180 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Learning Hub</title>
-    <style>
-        :root {
-            --bg-color: #0b0f19;
-            --text-color: #f1f5f9;
-            --card-bg: #151b2c;
-            --primary-color: #06b6d4;
-            --secondary-color: #94a3b8;
-            --border-color: #232d45;
-            --border-radius: 12px;
-            --shadow: 0 10px 30px -10px rgba(2, 3, 6, 0.7);
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .container {
-            max-width: 900px;
-            width: 100%;
-            padding: 3rem 1.5rem;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p.subtitle {
-            color: var(--secondary-color);
-            font-size: 1.1rem;
-        }
-
-        .topics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .topic-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
-        }
-
-        .topic-card:hover {
-            transform: translateY(-4px);
-            border-color: #313f5e;
-        }
-
-        .topic-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .lesson-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .lesson-list li {
-            margin-bottom: 0.5rem;
-        }
-
-        .lesson-list a {
-            text-decoration: none;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            transition: color 0.2s ease;
-        }
-
-        .lesson-list a:hover {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-
-        .lesson-list a::before {
-            content: "→";
-            margin-right: 0.5rem;
-            color: var(--secondary-color);
-            font-size: 0.8em;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            color: var(--secondary-color);
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>My Learning Hub</h1>
-            <p class="subtitle">A collection of topics and lessons.</p>
-        </header>
-
-        <main>
-            <div id="topics-container" class="topics-grid">
-                <div class="topic-card">
-                    <h2 class="topic-title">Modern TS Monorepo</h2>
-                    <ul class="lesson-list">
-                        <li><a href="modern-ts-monorepo/lessons/0001-monorepo-intro.html">Lesson 1: Monorepo Intro</a></li>
-                        <li><a href="modern-ts-monorepo/lessons/0002-trpc-api.html">Lesson 2: tRPC & API Layer</a></li>
-                        <li><a href="modern-ts-monorepo/lessons/0003-server-and-client.html">Lesson 3: Server & Client</a></li>
-                        <li><a href="modern-ts-monorepo/lessons/0004-init-project.html">Lesson 4: Project Init</a></li>
-                        <li><a href="modern-ts-monorepo/lessons/0005-scaffold-first-run.html">Lesson 5: First Run</a></li>
-                        <li><a href="modern-ts-monorepo/lessons/0006-adding-feature.html">Lesson 6: Add Feature E2E</a></li>
-                        <li><a href="modern-ts-monorepo/lessons/0007-wisdom-and-graduation.html">Lesson 7: Wisdom & Next Steps</a></li>
-                        <li><a href="modern-ts-monorepo/reference/stack-architecture.html">Reference: Stack Architecture</a></li>
-                    </ul>
-                </div>
-                <div class="topic-card">
-                    <h2 class="topic-title">TypeScript E2E & Docs Mastery</h2>
-                    <ul class="lesson-list">
-                        <li><a href="typescript-e2e-and-docs/lessons/0001-reading-docs-and-errors.html">Lesson 1: Reading TS Docs & Errors</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div id="empty-state" class="empty-state">
-                <p>No topics have been created yet.</p>
-                <p>Use the <strong>/teach</strong> command to start learning a new topic!</p>
-            </div>
-        </main>
-    </div>
-
-    <script>
-        // Simple script to toggle empty state based on content
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('topics-container');
-            const emptyState = document.getElementById('empty-state');
-            
-            // If the agent adds elements to the topics-container, hide the empty state.
-            // Currently ignoring text nodes (whitespace).
-            const hasTopics = Array.from(container.childNodes).some(node => node.nodeType === Node.ELEMENT_NODE);
-            
-            if (hasTopics) {
-                emptyState.style.display = 'none';
-            }
-        });
-    </script>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Learning curriculum · Fieldnotes</title>
+<link rel="stylesheet" href="assets/academic.css"></head><body data-accent="sage"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner"><a class="brand" href="home.html"><span class="brand-mark">§</span>Fieldnotes</a><div class="crumbs">A working curriculum</div></div></header>
+<main id="main" class="hub-shell"><header class="hub-hero"><div><div class="eyebrow">Personal technical curriculum · 47 lessons</div><h1>Learn by building a better model.</h1><p>Six rigorous, practice-led tracks. Each lesson begins with a mental model, turns it into a worked example, then asks you to retrieve and apply it.</p></div><aside class="catalog-note">Read → predict → practice → retrieve → revisit.<br><br>Learning records remain evidence-based: a page existing does not mean it has been learned.</aside></header><div class="catalog"><section class="course" data-course="modern-ts-monorepo">
+  <div><div class="course-index">TRACK 01</div><div class="course-meta">7 lessons · Intermediate</div></div>
+  <div><h2>Modern TypeScript Monorepo</h2><p class="course-deck">Type-safe systems across web, mobile, server, and shared packages.</p>
+  <ol class="lesson-list"><li><a href="modern-ts-monorepo/lessons/0001-monorepo-intro.html"><b>01</b><span>One repository, many products</span></a></li><li><a href="modern-ts-monorepo/lessons/0002-trpc-api.html"><b>02</b><span>The API as a typed boundary</span></a></li><li><a href="modern-ts-monorepo/lessons/0003-server-and-client.html"><b>03</b><span>Server and client responsibilities</span></a></li><li><a href="modern-ts-monorepo/lessons/0004-init-project.html"><b>04</b><span>Initialize with constraints</span></a></li><li><a href="modern-ts-monorepo/lessons/0005-scaffold-first-run.html"><b>05</b><span>Make the first run observable</span></a></li><li><a href="modern-ts-monorepo/lessons/0006-adding-feature.html"><b>06</b><span>Build a vertical slice</span></a></li><li><a href="modern-ts-monorepo/lessons/0007-wisdom-and-graduation.html"><b>07</b><span>Operate the architecture</span></a></li></ol>
+  <div class="reference-links"><a href="modern-ts-monorepo/reference/field-guide.html">Field guide</a><a href="modern-ts-monorepo/MISSION.md">Mission</a><a href="modern-ts-monorepo/RESOURCES.md">Sources</a></div></div>
+</section><section class="course" data-course="typescript-e2e-and-docs">
+  <div><div class="course-index">TRACK 02</div><div class="course-meta">6 lessons · Intermediate</div></div>
+  <div><h2>TypeScript: Errors to End-to-End</h2><p class="course-deck">Read types, validate boundaries, and deliver robust vertical slices.</p>
+  <ol class="lesson-list"><li><a href="typescript-e2e-and-docs/lessons/0001-reading-docs-and-errors.html"><b>01</b><span>Read errors as a path</span></a></li><li><a href="typescript-e2e-and-docs/lessons/0002-narrowing-unknown.html"><b>02</b><span>Narrow what you do not know</span></a></li><li><a href="typescript-e2e-and-docs/lessons/0003-generics-inference.html"><b>03</b><span>Read generic relationships</span></a></li><li><a href="typescript-e2e-and-docs/lessons/0004-domain-modeling.html"><b>04</b><span>Make invalid states difficult</span></a></li><li><a href="typescript-e2e-and-docs/lessons/0005-runtime-schemas.html"><b>05</b><span>Validate at every trust boundary</span></a></li><li><a href="typescript-e2e-and-docs/lessons/0006-e2e-contract.html"><b>06</b><span>Prove an end-to-end contract</span></a></li></ol>
+  <div class="reference-links"><a href="typescript-e2e-and-docs/reference/field-guide.html">Field guide</a><a href="typescript-e2e-and-docs/MISSION.md">Mission</a><a href="typescript-e2e-and-docs/RESOURCES.md">Sources</a></div></div>
+</section><section class="course" data-course="eth-node-deployer">
+  <div><div class="course-index">TRACK 03</div><div class="course-meta">8 lessons · Advanced</div></div>
+  <div><h2>Ethereum Node Deployer</h2><p class="course-deck">A secure self-service control plane from API request to healthy node.</p>
+  <ol class="lesson-list"><li><a href="eth-node-deployer/lessons/0001-architecture-overview.html"><b>01</b><span>Control plane to data plane</span></a></li><li><a href="eth-node-deployer/lessons/0002-database-and-auth.html"><b>02</b><span>Persist intent and enforce tenancy</span></a></li><li><a href="eth-node-deployer/lessons/0003-pulumi-automation-api.html"><b>03</b><span>Provision with a durable program</span></a></li><li><a href="eth-node-deployer/lessons/0004-ssh-provisioning-orchestrator.html"><b>04</b><span>Make remote configuration idempotent</span></a></li><li><a href="eth-node-deployer/lessons/0005-docker-compose-stack.html"><b>05</b><span>Compose the Ethereum runtime</span></a></li><li><a href="eth-node-deployer/lessons/0006-trpc-api-routes.html"><b>06</b><span>Expose safe asynchronous operations</span></a></li><li><a href="eth-node-deployer/lessons/0007-frontend-dashboard-and-admin.html"><b>07</b><span>Design for calm operations</span></a></li><li><a href="eth-node-deployer/lessons/0008-testing-and-validation.html"><b>08</b><span>Prove readiness and recovery</span></a></li></ol>
+  <div class="reference-links"><a href="eth-node-deployer/reference/field-guide.html">Field guide</a><a href="eth-node-deployer/MISSION.md">Mission</a><a href="eth-node-deployer/RESOURCES.md">Sources</a></div></div>
+</section><section class="course" data-course="platform-engineering">
+  <div><div class="course-index">TRACK 04</div><div class="course-meta">10 lessons · Foundations → Advanced</div></div>
+  <div><h2>Platform Engineering</h2><p class="course-deck">Build an internal platform as a product, from golden path to reliable operations.</p>
+  <ol class="lesson-list"><li><a href="platform-engineering/lessons/0001-platform-as-product.html"><b>01</b><span>Platform as a product</span></a></li><li><a href="platform-engineering/lessons/0002-foundations-networking.html"><b>02</b><span>Runtime foundations: Linux, networks, DNS, TLS</span></a></li><li><a href="platform-engineering/lessons/0003-containers-kubernetes.html"><b>03</b><span>Reconciliation and Kubernetes</span></a></li><li><a href="platform-engineering/lessons/0004-infrastructure-as-code.html"><b>04</b><span>Infrastructure as code and state</span></a></li><li><a href="platform-engineering/lessons/0005-ci-cd-gitops.html"><b>05</b><span>Delivery, GitOps, and progressive change</span></a></li><li><a href="platform-engineering/lessons/0006-developer-portal-golden-paths.html"><b>06</b><span>Catalogs, portals, and golden paths</span></a></li><li><a href="platform-engineering/lessons/0007-observability-slos.html"><b>07</b><span>Observability and SLOs</span></a></li><li><a href="platform-engineering/lessons/0008-identity-policy-secrets.html"><b>08</b><span>Identity, policy, and secrets</span></a></li><li><a href="platform-engineering/lessons/0009-supply-chain-cost-resilience.html"><b>09</b><span>Supply chain, cost, and resilience</span></a></li><li><a href="platform-engineering/lessons/0010-capstone-platform-blueprint.html"><b>10</b><span>Capstone: the Atlas platform blueprint</span></a></li></ol>
+  <div class="reference-links"><a href="platform-engineering/reference/field-guide.html">Field guide</a><a href="platform-engineering/MISSION.md">Mission</a><a href="platform-engineering/RESOURCES.md">Sources</a></div></div>
+</section><section class="course" data-course="nvim">
+  <div><div class="course-index">TRACK 05</div><div class="course-meta">8 lessons · Beginner → Productive</div></div>
+  <div><h2>Neovim</h2><p class="course-deck">Learn modal editing as a language, then build a small maintainable editor.</p>
+  <ol class="lesson-list"><li><a href="nvim/lessons/0001-modal-grammar.html"><b>01</b><span>Modal editing is a language</span></a></li><li><a href="nvim/lessons/0002-motions-text-objects.html"><b>02</b><span>Move by meaning</span></a></li><li><a href="nvim/lessons/0003-repeat-registers-macros.html"><b>03</b><span>Edit once, repeat safely</span></a></li><li><a href="nvim/lessons/0004-search-substitute-quickfix.html"><b>04</b><span>Search becomes a work queue</span></a></li><li><a href="nvim/lessons/0005-buffers-windows-tabs.html"><b>05</b><span>Separate files, views, and layouts</span></a></li><li><a href="nvim/lessons/0006-lsp-diagnostics-treesitter.html"><b>06</b><span>Language intelligence without mystery</span></a></li><li><a href="nvim/lessons/0007-lua-configuration.html"><b>07</b><span>Build a small Lua configuration</span></a></li><li><a href="nvim/lessons/0008-capstone-editing-kata.html"><b>08</b><span>Capstone: a real editing session</span></a></li></ol>
+  <div class="reference-links"><a href="nvim/reference/field-guide.html">Field guide</a><a href="nvim/MISSION.md">Mission</a><a href="nvim/RESOURCES.md">Sources</a></div></div>
+</section><section class="course" data-course="jujutsu-vcs">
+  <div><div class="course-index">TRACK 06</div><div class="course-meta">8 lessons · Git user → Productive</div></div>
+  <div><h2>Jujutsu VCS (`jj`)</h2><p class="course-deck">A safer change-centric workflow on top of Git repositories.</p>
+  <ol class="lesson-list"><li><a href="jujutsu-vcs/lessons/0001-change-centric-model.html"><b>01</b><span>Commits that evolve</span></a></li><li><a href="jujutsu-vcs/lessons/0002-setup-git-interoperability.html"><b>02</b><span>Use jj with Git safely</span></a></li><li><a href="jujutsu-vcs/lessons/0003-daily-workflow.html"><b>03</b><span>Describe, edit, and start the next change</span></a></li><li><a href="jujutsu-vcs/lessons/0004-revsets-log.html"><b>04</b><span>Query the commit graph</span></a></li><li><a href="jujutsu-vcs/lessons/0005-rewrite-stacks.html"><b>05</b><span>Rewrite without ceremony</span></a></li><li><a href="jujutsu-vcs/lessons/0006-bookmarks-remotes-github.html"><b>06</b><span>Publish through Git bookmarks</span></a></li><li><a href="jujutsu-vcs/lessons/0007-first-class-conflicts.html"><b>07</b><span>Conflicts can be committed</span></a></li><li><a href="jujutsu-vcs/lessons/0008-operation-log-capstone.html"><b>08</b><span>Recover, then trust yourself</span></a></li></ol>
+  <div class="reference-links"><a href="jujutsu-vcs/reference/field-guide.html">Field guide</a><a href="jujutsu-vcs/MISSION.md">Mission</a><a href="jujutsu-vcs/RESOURCES.md">Sources</a></div></div>
+</section></div></main></body></html>

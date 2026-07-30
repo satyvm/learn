@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>Platform Engineering field guide · Fieldnotes</title>
+<link rel="stylesheet" href="../../assets/academic.css"></head><body data-accent="violet"><a class="skip" href="#main">Skip to lesson</a>
+<header class="sitebar"><div class="sitebar-inner">
+<a class="brand" href="../../home.html"><span class="brand-mark">§</span>Fieldnotes</a>
+<div class="crumbs"><a href="../../home.html">Curriculum</a> / Platform Engineering / Field guide</div>
+</div></header>
+<main id="main" class="reference-shell"><div class="eyebrow">Quick reference · print-friendly</div><h1>Platform Engineering field guide</h1><p class="deck">Build an internal platform as a product, from golden path to reliable operations.</p><h2>Capability design card</h2><table><tr><th>Question</th><th>Example</th></tr><tr><td>User and job</td><td>Product developer creates an HTTP service</td></tr><tr><td>Contract</td><td>Service API / template / CLI</td></tr><tr><td>Source of truth</td><td>Catalog entity + environment declaration</td></tr><tr><td>Guardrails</td><td>Policy, identity, quota, approved module</td></tr><tr><td>Operating target</td><td>99% provisioned within 15 minutes</td></tr><tr><td>Evidence</td><td>Adoption, lead time, failures, support load</td></tr></table><h2>Platform layers</h2><pre><code>Experience  portal · CLI · docs
+Contracts   service · environment · deploy · observe
+Control     workflow · catalog · policy · identity
+Foundation  SCM · CI · registry · IaC · Kubernetes · telemetry
+Operations  SLO · support · audit · cost · recovery
+Product     research · adoption · roadmap · deprecation</code></pre><div class="callout">Choose products only after defining the capability, interface, user, constraint, and evidence.</div><h2>Hands-on companion</h2><p><a href="kubernetes-platform-lab.html">Open the seven-phase Kubernetes platform lab →</a></p>
+<h2>Course path</h2><ol><li><a href="../lessons/0001-platform-as-product.html">Platform as a product</a></li><li><a href="../lessons/0002-foundations-networking.html">Runtime foundations: Linux, networks, DNS, TLS</a></li><li><a href="../lessons/0003-containers-kubernetes.html">Reconciliation and Kubernetes</a></li><li><a href="../lessons/0004-infrastructure-as-code.html">Infrastructure as code and state</a></li><li><a href="../lessons/0005-ci-cd-gitops.html">Delivery, GitOps, and progressive change</a></li><li><a href="../lessons/0006-developer-portal-golden-paths.html">Catalogs, portals, and golden paths</a></li><li><a href="../lessons/0007-observability-slos.html">Observability and SLOs</a></li><li><a href="../lessons/0008-identity-policy-secrets.html">Identity, policy, and secrets</a></li><li><a href="../lessons/0009-supply-chain-cost-resilience.html">Supply chain, cost, and resilience</a></li><li><a href="../lessons/0010-capstone-platform-blueprint.html">Capstone: the Atlas platform blueprint</a></li></ol>
+<p class="teacher-note">Compress this reference further as your fluency grows. Add personal failure signatures and commands only after you understand them.</p></main></body></html>
